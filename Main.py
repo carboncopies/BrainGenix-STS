@@ -8,3 +8,6 @@ Description: This file is the main system file for STS.
 Date-Created: 2021-08-24
 '''
 
+from Core.Management.Logger.Logger import SysLog
+
+
