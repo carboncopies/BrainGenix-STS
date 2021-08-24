@@ -10,6 +10,8 @@ Date-Created: 2021-08-24
 
 from Core.Initialization.LoadConfig import LoadLocalConfig
 
+from Core.Initialization.Instantiator import InstantiateLogger
+
 
 ##############################################################################
 ## NOTE: A Lowercase "m" Preceeding A Class Means It's a Main System        ##
