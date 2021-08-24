@@ -1,0 +1,10 @@
+Logs/
+DebuggingTools/
+
+*.pyc
+*.pyz
+
+*__pycache__
+
+System/Config/Key.pub
+System/Config/PrivateKey.key
