@@ -5,4 +5,8 @@ BrainGenix-STS or simply STS is the Scan Translation System division of the Brai
 
 ## Key Features
 
+
+
 # Documentation
+
+Here is our current technical specification document: https://docs.google.com/document/d/149WdZagLIkIBSAH453RV0ppl8n2mmMGEUfaY6PMkhAQ/edit#
