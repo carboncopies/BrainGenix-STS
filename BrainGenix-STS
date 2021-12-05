@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-12-05T17:39:59.378Z" agent="5.0 (X11)" etag="XkKjffe7n6MWw9PEHJgY" version="15.8.9" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2021-12-05T17:45:43.563Z" agent="5.0 (X11)" etag="H3-qZd8Uk_44IExjT2fs" version="15.8.9" type="github" pages="2">
   <diagram id="qtGFv5AKLAZ8LEj0WKtx" name="Page-1">
     <mxGraphModel dx="981" dy="628" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -8,10 +8,34 @@
     </mxGraphModel>
   </diagram>
   <diagram id="MoEJY_r0iK-kjZg7RM08" name="Image Processing Pipeline">
-    <mxGraphModel dx="1422" dy="910" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="677" dy="433" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="6rYc48Rs6FyyMpszCDA9-0" />
         <mxCell id="6rYc48Rs6FyyMpszCDA9-1" parent="6rYc48Rs6FyyMpszCDA9-0" />
+        <mxCell id="6rYc48Rs6FyyMpszCDA9-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="6rYc48Rs6FyyMpszCDA9-1" source="6rYc48Rs6FyyMpszCDA9-2" target="6rYc48Rs6FyyMpszCDA9-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6rYc48Rs6FyyMpszCDA9-2" value="&lt;div&gt;Image Stitching&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="6rYc48Rs6FyyMpszCDA9-1">
+          <mxGeometry x="40" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6rYc48Rs6FyyMpszCDA9-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="6rYc48Rs6FyyMpszCDA9-1" source="6rYc48Rs6FyyMpszCDA9-3" target="6rYc48Rs6FyyMpszCDA9-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6rYc48Rs6FyyMpszCDA9-3" value="&lt;div&gt;Image Stacking&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="6rYc48Rs6FyyMpszCDA9-1">
+          <mxGeometry x="200" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6rYc48Rs6FyyMpszCDA9-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="6rYc48Rs6FyyMpszCDA9-1" source="6rYc48Rs6FyyMpszCDA9-4" target="6rYc48Rs6FyyMpszCDA9-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6rYc48Rs6FyyMpszCDA9-4" value="Feature Extraction" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="6rYc48Rs6FyyMpszCDA9-1">
+          <mxGeometry x="360" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6rYc48Rs6FyyMpszCDA9-7" value="&lt;div&gt;???&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="6rYc48Rs6FyyMpszCDA9-1">
+          <mxGeometry x="520" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6rYc48Rs6FyyMpszCDA9-9" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="6rYc48Rs6FyyMpszCDA9-1">
+          <mxGeometry x="40" y="140" width="770" height="280" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
