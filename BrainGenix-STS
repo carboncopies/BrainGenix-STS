@@ -1,1 +1,18 @@
-<mxfile host="app.diagrams.net" modified="2021-12-05T17:39:11.063Z" agent="5.0 (X11)" version="15.8.9" etag="su6f46aZpCA1bp41pKft" type="github"><diagram id="qtGFv5AKLAZ8LEj0WKtx">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-12-05T17:39:59.378Z" agent="5.0 (X11)" etag="XkKjffe7n6MWw9PEHJgY" version="15.8.9" type="github" pages="2">
+  <diagram id="qtGFv5AKLAZ8LEj0WKtx" name="Page-1">
+    <mxGraphModel dx="981" dy="628" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="MoEJY_r0iK-kjZg7RM08" name="Image Processing Pipeline">
+    <mxGraphModel dx="1422" dy="910" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="6rYc48Rs6FyyMpszCDA9-0" />
+        <mxCell id="6rYc48Rs6FyyMpszCDA9-1" parent="6rYc48Rs6FyyMpszCDA9-0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
