@@ -8,3 +8,6 @@ DebuggingTools/
 
 System/Config/Key.pub
 System/Config/PrivateKey.key
+
+.DS_Store
+
