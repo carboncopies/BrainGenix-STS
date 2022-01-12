@@ -23,6 +23,10 @@ target_link_libraries(STS_NeuronCapacitanceExtraction
 
 # Link Internal Libs
 target_link_libraries(STS_NeuronCapacitanceExtraction
+    
+    STS_STRUCT_Triangle
+    STS_STRUCT_Vertex
+
     )
 
 target_include_directories(STS_NeuronCapacitanceExtraction PUBLIC ./)
