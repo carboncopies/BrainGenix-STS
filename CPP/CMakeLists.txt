@@ -38,3 +38,7 @@ target_link_libraries(${PROJECT_NAME}
   # Internal Libs
   )
 
+
+
+# Add Internal Libs
+add_subdirectory(${SRC_DIR}/Core/Structures/STS_STRUCT_Triangle)
