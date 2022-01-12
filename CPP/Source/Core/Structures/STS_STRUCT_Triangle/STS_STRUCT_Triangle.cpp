@@ -7,19 +7,9 @@
 
 struct STS_STRUCT_Triangle {
 
-    // First Vert
-    double X1;
-    double Y1;
-    double Z1;
-
-    // Second Vert
-    double X2;
-    double Y2;
-    double Z2;
-
-    // Third Vert
-    double X3;
-    double Y3;
-    double Z3;
+    // Vertexes
+    STS_STRUCT_Vertex V1();
+    STS_STRUCT_Vertex V2();
+    STS_STRUCT_Vertex V3();
 
 };

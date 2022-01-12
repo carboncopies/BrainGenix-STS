@@ -21,6 +21,7 @@ target_link_libraries(STS_STRUCT_Triangle
 
 # Link Internal Libs
 target_link_libraries(STS_STRUCT_Triangle
+    STS_STRUCT_Vertex
     )
 
 target_include_directories(STS_STRUCT_Triangle PUBLIC ./)

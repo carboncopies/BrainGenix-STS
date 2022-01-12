@@ -9,11 +9,10 @@
 // Third-Party Libraries
 
 // Internal Libraries
-#include <STS_STRUCT_Vertex.h>
 
 
 /**
- * @brief This structure stores a triangle with x,y,z for all three vertices.
+ * @brief This structure stores a vertex (xyz) in doubles.
  * 
  */
-struct STS_STRUCT_Triangle;
+struct STS_STRUCT_Vertex;
