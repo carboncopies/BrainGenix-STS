@@ -8,10 +8,12 @@ add_library(STS_NeuronCapacitanceExtraction
 
             # Add Source Files (.cpp)
             "STS_CLASS_NeuronCapacitanceExtraction.cpp"
+            "STS_FUNCTION_TriangleArea.cpp"
 
             # Add Header Files (.h)
             "STS_CLASS_NeuronCapacitanceExtraction.h"
-            
+            "STS_FUNCTION_TriangleArea.h"
+
             ${BACKWARD_ENABLE}
             )
 
