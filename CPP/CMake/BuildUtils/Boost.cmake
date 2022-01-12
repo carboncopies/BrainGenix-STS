@@ -3,6 +3,6 @@
 ##########################
 
 ERSBuildLogger(${Green} "Configuring Boost Library")
-add_subdirectory("${LIB_DIR}/boost")
-disable_target_warnings(yaml-cpp)
+set(FETCHCONTENT_SOURCE_DIR_BOOST "${LIB_DIR}/boost")
+add_subdirectory("${LIB_DIR}/boost-cmake")
 ERSBuildLogger(${BoldGreen} "Finished Configuring Boost Library")
