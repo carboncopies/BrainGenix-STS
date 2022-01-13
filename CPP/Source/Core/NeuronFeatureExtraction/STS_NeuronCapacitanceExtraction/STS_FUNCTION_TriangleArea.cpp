@@ -15,7 +15,7 @@ double STS_FUNCTION_CalculateTriangleArea(STS_STRUCT_Triangle Triangle) {
 
     // Calculate Area
     double Temp = (DistanceAB + DistanceBC + DistanceCA) / 2;
-    double Area = pow((Temp * (Temp - DistanceAB) * (Temp - DistanceBC) * (Temp - DistanceCA)), 0.5);
+    double Area = sqrt((Temp * (Temp - DistanceAB) * (Temp - DistanceBC) * (Temp - DistanceCA)));
 
     // Return Area
     return Area;

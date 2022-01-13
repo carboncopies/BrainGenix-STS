@@ -21,5 +21,4 @@ double STS_FUNCTION_CalculateLineDistance(STS_STRUCT_Vertex V1, STS_STRUCT_Verte
     // return sqrt((XComp + YComp + ZComp));
 
 
-
 }
