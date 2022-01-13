@@ -80,5 +80,24 @@ def find_line_length(X1, Y1, Z1, X2, Y2, Z2):
 
     return Length
 
+
+'''
+
+    // Calculate Components
+    double XComp = pow((V1.X - V2.X), 2);
+    double YComp = pow((V1.Y - V2.Y), 2);
+    double ZComp = pow((V1.Z - V2.Z), 2);
+
+    // Sum Components, Take Sqrt
+    double Distance = pow((XComp + YComp + ZComp), 0.5);
+
+    // Return Value
+    return Distance;
+
+
+'''
+
+
+
 for x in range(10000000):
     find_triangle_area(A,B,C)
