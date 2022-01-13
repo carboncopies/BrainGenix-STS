@@ -15,8 +15,7 @@
 #include <STS_CLASS_LoggingSystem.h>
 
 
-#include <STS_FUNCTION_TriangleArea.h>
-
+#include <STS_CLASS_TriangleAreaThreadingEngine.h>
 
 
 int main() {
@@ -31,6 +30,8 @@ int main() {
     SystemUtils->Logger_ = std::make_shared<STS_CLASS_LoggingSystem>(SystemUtils->LocalSystemConfig);
     SystemUtils->Logger_->Log("Setting Up Logging System", 5);
 
+
+    STS_CLASS_TriangleAreaThreadingEngine Test(SystemUtils);
 
     
 }
