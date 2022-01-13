@@ -39,6 +39,7 @@ C.append(CX)
 C.append(CY)
 C.append(CZ)
 
+
 def find_triangle_area(Point_A, Point_B, Point_C):
 
     # Extract Points
@@ -66,9 +67,9 @@ def find_triangle_area(Point_A, Point_B, Point_C):
 
 def find_line_length(X1, Y1, Z1, X2, Y2, Z2):
 
-    XY = (math.sqrt((math.abs(X1 - X2) * math.abs(X1 - X2)) + (math.abs(Y1 - Y2) * math.abs(Y1 - Y2))))
+    XY = (math.sqrt((abs(X1 - X2) * abs(X1 - X2)) + (abs(Y1 - Y2) * abs(Y1 - Y2))))
     
-    Length = (math.sqrt((XY * XY) + (math.abs(Z1 - Z2) * math.abs(Z1 - Z2))))
+    Length = (math.sqrt((XY * XY) + (abs(Z1 - Z2) * abs(Z1 - Z2))))
 
     return Length
 
