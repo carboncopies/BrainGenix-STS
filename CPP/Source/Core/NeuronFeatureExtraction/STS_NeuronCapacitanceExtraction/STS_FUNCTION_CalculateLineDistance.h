@@ -7,6 +7,7 @@
 // Standard Libraries
 #include <iostream>
 #include <memory>
+#include <math>
 
 // Third-Party Libraries
 
