@@ -13,6 +13,8 @@
 
 int main() {
 
+    // Load Local Configuration
+
     STS_STRUCT_Vertex V1;
     STS_STRUCT_Vertex V2;
     STS_STRUCT_Vertex V3;
