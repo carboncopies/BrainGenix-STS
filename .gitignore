@@ -1,5 +1,6 @@
 Logs/
 DebuggingTools/
+.vscode/
 
 *.pyc
 *.pyz
