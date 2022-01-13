@@ -1,24 +1,27 @@
-########################################################################
-# This file is part of the BrainGenix-ERS Environment Rendering System #
-########################################################################
-
-
-
-# Specify CPP Files In Source (Name Should Start With Parent Dir Name)
-set(LoggingSystem_Sources
-    "LoggingSystem.cpp"
-)
-
-# Specify Header Files In Source (Name Should Start With Parent Dir Name)
-set(LoggingSystem_Headers
-    "LoggingSystem.h"
-)
+###################################################################
+# This file is part of the BrainGenix-STS Scan Translation System #
+###################################################################
 
 
 # Create Library (Name Should Be Parent Dir Name)
-add_library(LoggingSystem ${LoggingSystem_Sources} ${LoggingSystem_Headers} ${BACKWARD_ENABLE})
-target_link_libraries(LoggingSystem 
+add_library(STS_CLASS_LoggingSystem 
+
+            # Add Source Files (.cpp)
+            "STS_CLASS_LoggingSystem.cpp"
+
+            # Add Header Files (.h)
+            "STS_CLASS_LoggingSystem.h"
+            
+            ${BACKWARD_ENABLE}
+            )
+
+# Link 3rd Party Libs
+target_link_libraries(STS_CLASS_LoggingSystem
     yaml-cpp
     )
-target_include_directories(LoggingSystem PUBLIC ./)
 
+# Link Internal Libs
+target_link_libraries(STS_CLASS_LoggingSystem
+    )
+
+target_include_directories(STS_CLASS_LoggingSystem PUBLIC ./)
