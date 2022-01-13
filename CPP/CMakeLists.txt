@@ -36,6 +36,9 @@ target_link_libraries(${PROJECT_NAME}
   yaml-cpp
 
   # Internal Libs
+  STS_ConfigurationLoader
+  STS_LoggingSystem
+  
   STS_NeuronCapacitanceExtraction
   )
 
