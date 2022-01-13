@@ -9,20 +9,31 @@
 */
 
 #include <STS_FUNCTION_CalculateLineDistance.h>
+#include <STS_FUNCTION_TriangleArea.h>
 
 int main() {
 
     STS_STRUCT_Vertex V1;
     STS_STRUCT_Vertex V2;
+    STS_STRUCT_Vertex V3;
     
-    V1.X = 3;
-    V1.Y = 3;
-    V1.Z = 3;
+    V1.X = 1;
+    V1.Y = 1;
+    V1.Z = 0;
 
-    V2.X = 0;
-    V2.Y = 0;
+    V2.X = -2;
+    V2.Y = 4;
     V2.Z = 0;
 
-    std::cout<<STS_FUNCTION_CalculateLineDistance(V1, V2)<<std::endl;
+    V3.X = -2;
+    V3.Y = -2;
+    V3.Z = 0;
+
+    STS_STRUCT_Triangle Tri;
+    Tri.V1 = V1;
+    Tri.V2 = V2;
+    Tri.V3 = V3; 
+
+    std::cout<<STS_FUNCTION_CalculateTriangleArea(Tri)<<std::endl;
     
 }
