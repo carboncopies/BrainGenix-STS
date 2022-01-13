@@ -1,44 +1,47 @@
 import math
 
-AX = input("Point_A X_axis: ")
-AY = input("Point_A Y_axis: ")
-AZ = input("Point_A Z_axis: ")
+# AX = input("Point_A X_axis: ")
+# AY = input("Point_A Y_axis: ")
+# AZ = input("Point_A Z_axis: ")
 
-AX = int(AX)
-AY = int(AY)
-AZ = int(AZ)
+# AX = int(AX)
+# AY = int(AY)
+# AZ = int(AZ)
 
-A = []
-A.append(AX)
-A.append(AY)
-A.append(AZ)
+# A = []
+# A.append(AX)
+# A.append(AY)
+# A.append(AZ)
 
-BX = input("Point_B X_axis: ")
-BY = input("Point_B Y_axis: ")
-BZ = input("Point_B Z_axis: ")
+# BX = input("Point_B X_axis: ")
+# BY = input("Point_B Y_axis: ")
+# BZ = input("Point_B Z_axis: ")
 
-BX = int(BX)
-BY = int(BY)
-BZ = int(BZ)
+# BX = int(BX)
+# BY = int(BY)
+# BZ = int(BZ)
 
-B = []
-B.append(BX)
-B.append(BY)
-B.append(BZ)
+# B = []
+# B.append(BX)
+# B.append(BY)
+# B.append(BZ)
 
-CX = input("Point_C X_axis: ")
-CY = input("Point_C Y_axis: ")
-CZ = input("Point_C Z_axis: ")
+# CX = input("Point_C X_axis: ")
+# CY = input("Point_C Y_axis: ")
+# CZ = input("Point_C Z_axis: ")
 
-CX = int(CX)
-CY = int(CY)
-CZ = int(CZ)
+# CX = int(CX)
+# CY = int(CY)
+# CZ = int(CZ)
 
-C = []
-C.append(CX)
-C.append(CY)
-C.append(CZ)
+# C = []
+# C.append(CX)
+# C.append(CY)
+# C.append(CZ)
 
+A = (1, 1, 4)
+B = (-2, 4, 0)
+C = (-2, -2, 0)
 
 def find_triangle_area(Point_A, Point_B, Point_C):
 
