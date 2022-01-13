@@ -25,10 +25,6 @@ target_link_libraries(STS_ModelLoader
 
 # Link Internal Libs
 target_link_libraries(STS_ModelLoader
-    Meshes
-    Model
-    Textures
-    TextureLoader
     STS_STRUCT_SystemUtils
     )
 

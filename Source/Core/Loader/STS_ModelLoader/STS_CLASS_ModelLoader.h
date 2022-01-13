@@ -31,14 +31,7 @@
 #include <assimp/postprocess.h>
 
 // Internal Libraries (BG convention: use <> instead of "")
-#include <Mesh.h>
-#include <2DTexture.h>
-#include <Vertex.h>
-#include <FileIO.h>
-#include <TextureLoader.h>
-#include <Model.h>
-
-#include <ERS_STRUCT_SystemUtils.h>
+#include <STS_STRUCT_SystemUtils.h>
 
 
 // FIXME: Fix reloading of same textures
