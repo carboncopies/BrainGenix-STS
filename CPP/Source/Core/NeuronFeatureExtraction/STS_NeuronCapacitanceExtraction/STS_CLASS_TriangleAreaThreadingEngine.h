@@ -22,6 +22,7 @@ class STS_CLASS_TriangleAreaThreadingEngine {
 
 private:
 
+    
 
 public:
 
