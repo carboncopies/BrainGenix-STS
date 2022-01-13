@@ -1,12 +1,6 @@
-//======================================================================//
-// This file is part of the BrainGenix-ERS Environment Rendering System //
-//======================================================================//
-
-/*
-    Description: This file is responsible for implementing the logger system used by the rest of the system.
-    Additonal Notes: None
-    Date Created: 2021-05-31
-*/
+//=================================================================//
+// This file is part of the BrainGenix-STS Scan Translation System //
+//=================================================================//
 
 #pragma once
 
@@ -27,7 +21,7 @@
 /**
  * @brief Main Logging System, Saves Logs To Database/Text File If Configured To.
  */
-class LoggerClass {
+class STS_CLASS_LoggingSystem {
 
     // Define "Local" Variables And Functions //
     private: 
@@ -87,13 +81,13 @@ class LoggerClass {
          * 
          * @param SystemConfiguration System configuration file in YAML::Node format from Config.yaml.
          */
-        LoggerClass(YAML::Node SystemConfiguration);
+        STS_CLASS_LoggingSystem(YAML::Node SystemConfiguration);
 
         /**
          * @brief Cleanup the logger class, close db connection, close file io, etc.
          * 
          */
-        ~LoggerClass();
+        ~STS_CLASS_LoggingSystem();
 
         /**
          * @brief Add item to system log. 

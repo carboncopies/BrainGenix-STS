@@ -1,22 +1,16 @@
-//======================================================================//
-// This file is part of the BrainGenix-ERS Environment Rendering System //
-//======================================================================//
-
-/*
-    Description: This file is responsible for implementing the logger system used by the rest of the system.
-    Additonal Notes: None
-    Date Created: 2021-05-31
-*/
+//=================================================================//
+// This file is part of the BrainGenix-STS Scan Translation System //
+//=================================================================//
 
 
 
 
-#include "LoggingSystem.h"
+#include "STS_CLASS_LoggingSystem.h"
 
 
 
-// LoggerClass Constructor
-LoggerClass::LoggerClass(YAML::Node SystemConfiguration) {
+// STS_CLASS_LoggingSystem Constructor
+STS_CLASS_LoggingSystem::STS_CLASS_LoggingSystem(YAML::Node SystemConfiguration) {
 
     // Make Local Copy Of System Config
     LocalSystemConfiguration = SystemConfiguration;
@@ -55,8 +49,8 @@ LoggerClass::LoggerClass(YAML::Node SystemConfiguration) {
 
 };
 
-// LoggerClass Destructor
-LoggerClass::~LoggerClass() {
+// STS_CLASS_LoggingSystem Destructor
+STS_CLASS_LoggingSystem::~STS_CLASS_LoggingSystem() {
 
     // Log Shutdown
     Log("System Logger Destructor Called, Logger Shutting Down", 6);
@@ -68,8 +62,8 @@ LoggerClass::~LoggerClass() {
 }
 
 
-// Define LoggerClass::Log
-void LoggerClass::Log(const char* LogItem, int LogLevel) {
+// Define STS_CLASS_LoggingSystem::Log
+void STS_CLASS_LoggingSystem::Log(const char* LogItem, int LogLevel) {
 
     // Get Current Time In YYYY-MM-DD-HH-MM-SS Format
     std::time_t RawCurrentTime;
@@ -137,8 +131,8 @@ void LoggerClass::Log(const char* LogItem, int LogLevel) {
 
 }
 
-// Define LoggerClass::ColorizeText
-void LoggerClass::ColorizeText(std::string Message, int LogLevel) {
+// Define STS_CLASS_LoggingSystem::ColorizeText
+void STS_CLASS_LoggingSystem::ColorizeText(std::string Message, int LogLevel) {
 
     // Get Color Value
     RGBColor ColorValue = ColorLookup_[LogLevel];
