@@ -62,7 +62,7 @@ def find_triangle_area(Point_A, Point_B, Point_C):
     LineAC_Length = find_line_length(PointAX, PointAY, PointAZ, PointCX, PointCY, PointCZ)
     LineBC_Length = find_line_length(PointBX, PointBY, PointBZ, PointCX, PointCY, PointCZ)
 
-    return "AB = " + str(LineAB_Length) + "\n AC = " + str(LineAC_Length) + "\n BC = " + str(LineAC_Length)
+    return "AB = " + str(LineAB_Length) + "\nAC = " + str(LineAC_Length) + "\nBC = " + str(LineAC_Length)
 
 
 def find_line_length(X1, Y1, Z1, X2, Y2, Z2):
