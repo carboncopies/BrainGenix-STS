@@ -8,12 +8,23 @@
     Date Created: 2022-01-11
 */
 
+#include <STS_FUNCTION_LocalConfigurationLoader.h>
+#include <STS_CLASS_LoggingSystem.h>
+
+
 #include <STS_FUNCTION_CalculateLineDistance.h>
 #include <STS_FUNCTION_TriangleArea.h>
 
 int main() {
 
     // Load Local Configuration
+    YAML::Node LocalConfig = STS_FUNCTION_LoadLocalConfig("Config.yaml");
+
+    // Setup Logging System
+    STS_CLASS_LoggingSystem LoggingSystem = STS_CLASS_LoggingSystem(LocalConfig);
+    LoggingSystem.Log("Setting Up Logging System", 5);
+
+
 
     STS_STRUCT_Vertex V1;
     STS_STRUCT_Vertex V2;
