@@ -41,8 +41,8 @@ else ()
     set(BoldWhite   " ")
 endif()
 
-function(ERSBuildLogger Color Message)
-    message("${BoldMagenta}[ERS Build System]${ColourReset} ${Color}${Message}${ColourReset}")
+function(STSBuildLogger Color Message)
+    message("${BoldMagenta}[STS Build System]${ColourReset} ${Color}${Message}${ColourReset}")
 endfunction()
 
 # function(message)

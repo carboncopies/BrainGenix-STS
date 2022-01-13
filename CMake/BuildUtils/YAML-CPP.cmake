@@ -1,8 +1,8 @@
 ##########################
-# Builds Library For ERS #
+# Builds Library For STS #
 ##########################
 
-ERSBuildLogger(${Green} "Configuring YAML-CPP Library")
+STSBuildLogger(${Green} "Configuring YAML-CPP Library")
 add_subdirectory("${LIB_DIR}/yaml-cpp")
 disable_target_warnings(yaml-cpp)
-ERSBuildLogger(${BoldGreen} "Finished Configuring YAML-CPP Library")
+STSBuildLogger(${BoldGreen} "Finished Configuring YAML-CPP Library")

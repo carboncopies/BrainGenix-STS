@@ -1,7 +1,7 @@
 ##########################
-# Builds Library For ERS #
+# Builds Library For STS #
 ##########################
 
-ERSBuildLogger(${Green} "Finding Threading Package")
+STSBuildLogger(${Green} "Finding Threading Package")
 find_package(Threads REQUIRED)
-ERSBuildLogger(${BoldGreen} "Found Threading Package")
+STSBuildLogger(${BoldGreen} "Found Threading Package")

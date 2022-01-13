@@ -1,7 +1,7 @@
 ##########################
-# Builds Library For ERS #
+# Builds Library For STS #
 ##########################
 
-ERSBuildLogger(${Green} "Configuring Backward Library")
+STSBuildLogger(${Green} "Configuring Backward Library")
 add_subdirectory(${LIB_DIR}/backward)
-ERSBuildLogger(${BoldGreen} "Finished Configuring Backward Library")
+STSBuildLogger(${BoldGreen} "Finished Configuring Backward Library")

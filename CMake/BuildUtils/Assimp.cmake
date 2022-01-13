@@ -1,8 +1,8 @@
 ##########################
-# Builds Library For ERS #
+# Builds Library For STS #
 ##########################
 
-ERSBuildLogger(${Green} "Configuring Assimp Library")
+STSBuildLogger(${Green} "Configuring Assimp Library")
 add_subdirectory(${LIB_DIR}/assimp)
 disable_target_warnings(assimp)
-ERSBuildLogger(${BoldGreen} "Finished Configuring Assimp Library")
+STSBuildLogger(${BoldGreen} "Finished Configuring Assimp Library")
