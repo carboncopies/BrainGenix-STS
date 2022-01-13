@@ -74,29 +74,11 @@ def find_triangle_area(Point_A, Point_B, Point_C):
 
 def find_line_length(X1, Y1, Z1, X2, Y2, Z2):
 
-    XY = (math.sqrt((abs(X1 - X2) * abs(X1 - X2)) + (abs(Y1 - Y2) * abs(Y1 - Y2))))
+    XY = (((X1 - X2) * (X1 - X2)) + ((Y1 - Y2) * (Y1 - Y2)))
     
-    Length = (math.sqrt((XY * XY) + (abs(Z1 - Z2) * abs(Z1 - Z2))))
+    Length = (math.sqrt((XY) + ((Z1 - Z2) * (Z1 - Z2))))
 
     return Length
-
-
-'''
-
-    // Calculate Components
-    double XComp = pow((V1.X - V2.X), 2);
-    double YComp = pow((V1.Y - V2.Y), 2);
-    double ZComp = pow((V1.Z - V2.Z), 2);
-
-    // Sum Components, Take Sqrt
-    double Distance = pow((XComp + YComp + ZComp), 0.5);
-
-    // Return Value
-    return Distance;
-
-
-'''
-
 
 
 for x in range(10000000):
