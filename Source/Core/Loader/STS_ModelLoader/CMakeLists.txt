@@ -19,8 +19,6 @@ add_library(STS_ModelLoader
 target_link_libraries(STS_ModelLoader
     yaml-cpp
     glm
-    glad
-    glfw
     assimp
     FreeImage
     )
