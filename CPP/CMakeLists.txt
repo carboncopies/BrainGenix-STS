@@ -38,7 +38,7 @@ target_link_libraries(${PROJECT_NAME}
   # Internal Libs
   STS_ConfigurationLoader
   STS_LoggingSystem
-  
+
   STS_NeuronCapacitanceExtraction
   )
 
@@ -54,3 +54,7 @@ add_subdirectory(${SRC_DIR}/Core/NeuronFeatureExtraction/STS_NeuronCapacitanceEx
 
 add_subdirectory(${SRC_DIR}/Core/Utils/STS_LoggingSystem)
 add_subdirectory(${SRC_DIR}/Core/Utils/STS_ConfigurationLoader)
+
+
+# Copy Files To Bin Dir
+configure_file("${SRC_DIR}/Config.yaml" "${BIN_DIR}/Config.yaml" COPYONLY)
