@@ -4,7 +4,7 @@
 
 
 # Create Library (Name Should Be Parent Dir Name)
-add_library(STS_CLASS_LoggingSystem 
+add_library(STS_LoggingSystem 
 
             # Add Source Files (.cpp)
             "STS_CLASS_LoggingSystem.cpp"
@@ -16,12 +16,12 @@ add_library(STS_CLASS_LoggingSystem
             )
 
 # Link 3rd Party Libs
-target_link_libraries(STS_CLASS_LoggingSystem
+target_link_libraries(STS_LoggingSystem
     yaml-cpp
     )
 
 # Link Internal Libs
-target_link_libraries(STS_CLASS_LoggingSystem
+target_link_libraries(STS_LoggingSystem
     )
 
-target_include_directories(STS_CLASS_LoggingSystem PUBLIC ./)
+target_include_directories(STS_LoggingSystem PUBLIC ./)
