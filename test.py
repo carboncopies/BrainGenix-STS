@@ -64,7 +64,7 @@ def find_triangle_area(Point_A, Point_B, Point_C):
 
     S = (LineAB_Length + LineAC_Length + LineBC_Length) / 2
 
-    Area = math.sqr(S(S-a) * (S-b) * (S-c))
+    Area = math.sqr(S * (S - LineAB_Length) * (S - LineAC_Length) * (S - LineBC_Length))
 
     return "AB = " + str(LineAB_Length) + "\nAC = " + str(LineAC_Length) + "\nBC = " + str(LineBC_Length)
 
