@@ -18,4 +18,4 @@
  * @param ConfigurationPath 
  * @return YAML::Node 
  */
-static YAML::Node STS_FUNCTION_LoadLocalConfig(const char* ConfigurationPath);
+YAML::Node STS_FUNCTION_LoadLocalConfig(const char* ConfigurationPath);

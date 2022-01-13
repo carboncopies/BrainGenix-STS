@@ -7,7 +7,7 @@
 
 
 // Define Load Config Function
-static YAML::Node STS_FUNCTION_LoadLocalConfig(const char* ConfigurationPath) {
+YAML::Node STS_FUNCTION_LoadLocalConfig(const char* ConfigurationPath) {
 
     // Read Configuration //
     YAML::Node ConfigurationDictionary = YAML::LoadFile(ConfigurationPath);
