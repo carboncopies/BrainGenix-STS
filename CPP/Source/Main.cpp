@@ -30,36 +30,5 @@ int main() {
     SystemUtils->Logger_->Log("Setting Up Logging System", 5);
 
 
-
-
-
-
-
-    STS_STRUCT_Vertex V1;
-    STS_STRUCT_Vertex V2;
-    STS_STRUCT_Vertex V3;
-    
-    V1.X = 1;
-    V1.Y = 1;
-    V1.Z = 4;
-
-    V2.X = -2;
-    V2.Y = 4;
-    V2.Z = 0;
-
-    V3.X = -2;
-    V3.Y = -2;
-    V3.Z = 0;
-
-    STS_STRUCT_Triangle Tri;
-    Tri.V1 = V1;
-    Tri.V2 = V2;
-    Tri.V3 = V3; 
-
-    std::cout<<STS_FUNCTION_CalculateTriangleArea(Tri)<<std::endl;
-
-    // for (long i = 0; i < 10000000; i++) {
-    //     STS_FUNCTION_CalculateTriangleArea(Tri);
-    // }
     
 }
