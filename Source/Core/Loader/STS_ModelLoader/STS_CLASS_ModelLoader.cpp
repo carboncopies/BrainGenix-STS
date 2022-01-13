@@ -2,15 +2,15 @@
 // This file is part of the BrainGenix-STS Scan Translation System //
 //=================================================================//
 
-#include <ERS_ModelLoader.h>
+#include <STS_CLASS_ModelLoader.h>
 
 // FIXME:
-// Cleanup Doxygen, fix headers, etc.
+// Cleanup Doxygen, fix headSTS, etc.
 // optionally optimize processgpu function to provide least amount of lag as possible
 // Add Placeholder meshes during loading
 
 // Constructor
-ERS_CLASS_ModelLoader::ERS_CLASS_ModelLoader(std::shared_ptr<ERS_STRUCT_SystemUtils> SystemUtils, int MaxModelLoadingThreads) {
+STS_CLASS_ModelLoader::STS_CLASS_ModelLoader(std::shared_ptr<STS_STRUCT_SystemUtils> SystemUtils, int MaxModelLoadingThreads) {
 
     // Create Local Pointer
     SystemUtils_ = SystemUtils;
@@ -30,16 +30,16 @@ ERS_CLASS_ModelLoader::ERS_CLASS_ModelLoader(std::shared_ptr<ERS_STRUCT_SystemUt
     SystemUtils_->Logger_->Log(std::string(std::string("Creating ") + std::to_string(MaxModelLoadingThreads) + std::string("Model Loading Threads")).c_str(), 4);
     for (int i = 0; i < MaxModelLoadingThreads; i++) {
         SystemUtils_->Logger_->Log(std::string(std::string("Creating Worker Thread ") + std::to_string(i)).c_str(), 3);
-        WorkerThreads_.push_back(std::thread(&ERS_CLASS_ModelLoader::WorkerThread, this));
+        WorkerThreads_.push_back(std::thread(&STS_CLASS_ModelLoader::WorkerThread, this));
     }
 
 }
 
 // Destructor
-ERS_CLASS_ModelLoader::~ERS_CLASS_ModelLoader() {
+STS_CLASS_ModelLoader::~STS_CLASS_ModelLoader() {
 
     // Log Destructor Call
-    SystemUtils_->Logger_->Log("ERS_CLASS_ModelLoader Destructor Called", 6);
+    SystemUtils_->Logger_->Log("STS_CLASS_ModelLoader Destructor Called", 6);
     FreeImage_DeInitialise();
 
     // Shutdown Threads
@@ -58,7 +58,7 @@ ERS_CLASS_ModelLoader::~ERS_CLASS_ModelLoader() {
 }
 
 // Worker Thread
-void ERS_CLASS_ModelLoader::WorkerThread() {
+void STS_CLASS_ModelLoader::WorkerThread() {
 
 
     // Enter Loop
@@ -77,7 +77,7 @@ void ERS_CLASS_ModelLoader::WorkerThread() {
             if (Size > 0) {
 
                 // Get Item, Remove From Queue, Unlock
-                std::shared_ptr<ERS_OBJECT_MODEL> WorkItem = WorkItems_[0];
+                std::shared_ptr<STS_OBJECT_MODEL> WorkItem = WorkItems_[0];
                 long WorkID = WorkIDs_[0];
                 bool FlipTexture = FlipTextures_[0];
 
@@ -105,10 +105,10 @@ void ERS_CLASS_ModelLoader::WorkerThread() {
 }
 
 // Updates The Current Scene, Loads In Models
-void ERS_CLASS_ModelLoader::ProcessNewModels(std::shared_ptr<ERS_OBJECT_SCENE> ActiveScene) {
+void STS_CLASS_ModelLoader::ProcessNewModels(std::shared_ptr<STS_OBJECT_SCENE> ActiveScene) {
 
     // Check List Of Models
-    std::unique_ptr<std::vector<std::shared_ptr<ERS_OBJECT_MODEL>>> Models = std::make_unique<std::vector<std::shared_ptr<ERS_OBJECT_MODEL>>>(ActiveScene->Models);
+    std::unique_ptr<std::vector<std::shared_ptr<STS_OBJECT_MODEL>>> Models = std::make_unique<std::vector<std::shared_ptr<STS_OBJECT_MODEL>>>(ActiveScene->Models);
 
     for (int i = 0; i < Models->size(); i++) {
 
@@ -126,7 +126,7 @@ void ERS_CLASS_ModelLoader::ProcessNewModels(std::shared_ptr<ERS_OBJECT_SCENE> A
 }
 
 // Add Model To Load Queue
-void ERS_CLASS_ModelLoader::AddModelToLoadingQueue(long AssetID, std::shared_ptr<ERS_OBJECT_MODEL> Model, bool FlipTextures) {
+void STS_CLASS_ModelLoader::AddModelToLoadingQueue(long AssetID, std::shared_ptr<STS_OBJECT_MODEL> Model, bool FlipTextures) {
 
     // Log Addition
     SystemUtils_->Logger_->Log(std::string(std::string("Adding Model '") + std::to_string(AssetID) + std::string("' To Load Queue")).c_str(), 4);
@@ -143,7 +143,7 @@ void ERS_CLASS_ModelLoader::AddModelToLoadingQueue(long AssetID, std::shared_ptr
 }
 
 // Process GPU Data (Must Be Done In Thread With OPENGL Context (should be main thread))
-void ERS_CLASS_ModelLoader::ProcessGPU(std::shared_ptr<ERS_OBJECT_MODEL> Model) {
+void STS_CLASS_ModelLoader::ProcessGPU(std::shared_ptr<STS_OBJECT_MODEL> Model) {
 
     // Push Textures To GPU RAM
     for (int i = 0; i < Model->TexturesToPushToGPU_.size(); i++) {
@@ -208,11 +208,11 @@ void ERS_CLASS_ModelLoader::ProcessGPU(std::shared_ptr<ERS_OBJECT_MODEL> Model) 
 }
 
 // Loads A Texture With The Given ID
-ERS_OBJECT_TEXTURE_2D ERS_CLASS_ModelLoader::LoadTexture(long ID, bool FlipTextures) {
+STS_OBJECT_TEXTURE_2D STS_CLASS_ModelLoader::LoadTexture(long ID, bool FlipTextures) {
 
     // Load Image Bytes Into Memory
-    std::shared_ptr<ERS_STRUCT_IOData> ImageData = std::make_shared<ERS_STRUCT_IOData>();
-    SystemUtils_->ERS_IOSubsystem_->ReadAsset(ID, ImageData);
+    std::shared_ptr<STS_STRUCT_IOData> ImageData = std::make_shared<STS_STRUCT_IOData>();
+    SystemUtils_->STS_IOSubsystem_->ReadAsset(ID, ImageData);
 
     // Identify Image Format, Decode
     FIMEMORY* FIImageData = FreeImage_OpenMemory(ImageData->Data.get(), ImageData->Size_B);
@@ -225,7 +225,7 @@ ERS_OBJECT_TEXTURE_2D ERS_CLASS_ModelLoader::LoadTexture(long ID, bool FlipTextu
     }
 
     // Get Metadata
-    ERS_OBJECT_TEXTURE_2D Texture;
+    STS_OBJECT_TEXTURE_2D Texture;
     Texture.HasImageData = false;
     Texture.ImageData = NULL;
     float Width, Height, Channels;
@@ -253,15 +253,15 @@ ERS_OBJECT_TEXTURE_2D ERS_CLASS_ModelLoader::LoadTexture(long ID, bool FlipTextu
 }
 
 // Load Model From File
-void ERS_CLASS_ModelLoader::LoadModel(long AssetID, std::shared_ptr<ERS_OBJECT_MODEL> Model, bool FlipTextures) {
+void STS_CLASS_ModelLoader::LoadModel(long AssetID, std::shared_ptr<STS_OBJECT_MODEL> Model, bool FlipTextures) {
 
     // Log Loading For Debugging Purposes
     SystemUtils_->Logger_->Log(std::string(std::string("Loading Model '") + std::to_string(AssetID) + std::string("'")).c_str(), 4);
 
 
     // Read Metadata From Asset
-    std::shared_ptr<ERS_STRUCT_IOData> ModelMetadata = std::make_shared<ERS_STRUCT_IOData>();
-    SystemUtils_->ERS_IOSubsystem_->ReadAsset(AssetID, ModelMetadata);
+    std::shared_ptr<STS_STRUCT_IOData> ModelMetadata = std::make_shared<STS_STRUCT_IOData>();
+    SystemUtils_->STS_IOSubsystem_->ReadAsset(AssetID, ModelMetadata);
     std::string ModelMetadataString = std::string((const char*)ModelMetadata->Data.get());
     YAML::Node Metadata = YAML::Load(ModelMetadataString);
 
@@ -291,10 +291,10 @@ void ERS_CLASS_ModelLoader::LoadModel(long AssetID, std::shared_ptr<ERS_OBJECT_M
 
 
     // Spawn Threads To Load Textures
-    std::vector<std::future<ERS_OBJECT_TEXTURE_2D>> DecodedTextures;
+    std::vector<std::future<STS_OBJECT_TEXTURE_2D>> DecodedTextures;
     for (int i = 0; i < TexturePaths.size(); i++) {
         SystemUtils_->Logger_->Log(std::string(std::string("Starting Thread To Load Texture With ID: ") + std::to_string(TextureIDs[i])).c_str(), 4);
-        DecodedTextures.push_back(std::async(&ERS_CLASS_ModelLoader::LoadTexture, this, TextureIDs[i], FlipTextures));
+        DecodedTextures.push_back(std::async(&STS_CLASS_ModelLoader::LoadTexture, this, TextureIDs[i], FlipTextures));
     }
 
 
@@ -302,8 +302,8 @@ void ERS_CLASS_ModelLoader::LoadModel(long AssetID, std::shared_ptr<ERS_OBJECT_M
     Assimp::Importer Importer;
     SystemUtils_->Logger_->Log(std::string(std::string("Loading Model With ID: ") + std::to_string(AssetID)).c_str(), 3);
 
-    std::shared_ptr<ERS_STRUCT_IOData> ModelData = std::make_shared<ERS_STRUCT_IOData>();
-    SystemUtils_->ERS_IOSubsystem_->ReadAsset(ModelID, ModelData);
+    std::shared_ptr<STS_STRUCT_IOData> ModelData = std::make_shared<STS_STRUCT_IOData>();
+    SystemUtils_->STS_IOSubsystem_->ReadAsset(ModelID, ModelData);
     const aiScene* Scene = Importer.ReadFileFromMemory(ModelData->Data.get(), (int)ModelData->Size_B, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace, "");
 
     // Log Errors
@@ -313,7 +313,7 @@ void ERS_CLASS_ModelLoader::LoadModel(long AssetID, std::shared_ptr<ERS_OBJECT_M
         return;
     }
 
-    // Decode Mesh, Create Texture Pointers
+    // Decode Mesh, Create Texture PointSTS
     ProcessNode(&(*Model), Scene->mRootNode, Scene, TexturePaths);
 
     // Get Texture Images From Loader, Push Into Vector
@@ -328,7 +328,7 @@ void ERS_CLASS_ModelLoader::LoadModel(long AssetID, std::shared_ptr<ERS_OBJECT_M
 }
 
 // Process Nodes
-void ERS_CLASS_ModelLoader::ProcessNode(ERS_OBJECT_MODEL* Model, aiNode *Node, const aiScene *Scene, std::vector<std::string> TexturePaths) {
+void STS_CLASS_ModelLoader::ProcessNode(STS_OBJECT_MODEL* Model, aiNode *Node, const aiScene *Scene, std::vector<std::string> TexturePaths) {
 
     // Process Meshes In Current Node
     for (unsigned int i = 0; i < Node->mNumMeshes; i++) {
@@ -345,16 +345,16 @@ void ERS_CLASS_ModelLoader::ProcessNode(ERS_OBJECT_MODEL* Model, aiNode *Node, c
 }
 
 // Process Mesh
-ERS_OBJECT_MESH ERS_CLASS_ModelLoader::ProcessMesh(ERS_OBJECT_MODEL* Model, aiMesh *Mesh, const aiScene *Scene, std::vector<std::string> TexturePaths) {
+STS_OBJECT_MESH STS_CLASS_ModelLoader::ProcessMesh(STS_OBJECT_MODEL* Model, aiMesh *Mesh, const aiScene *Scene, std::vector<std::string> TexturePaths) {
 
-    // Create Data Holders
-    ERS_OBJECT_MESH OutputMesh;
+    // Create Data HoldSTS
+    STS_OBJECT_MESH OutputMesh;
 
     // Iterate Through Meshes' Vertices
     for (unsigned int i = 0; i < Mesh->mNumVertices; i++) {
 
         // Hold Vertex Data
-        ERS_OBJECT_VERTEX Vertex;
+        STS_OBJECT_VERTEX Vertex;
         glm::vec3 Vector;
 
 
@@ -426,7 +426,7 @@ ERS_OBJECT_MESH ERS_CLASS_ModelLoader::ProcessMesh(ERS_OBJECT_MODEL* Model, aiMe
 }
 
 // Check Material Textures
-void ERS_CLASS_ModelLoader::LoadMaterialTextures(std::vector<int>* IDs, std::vector<std::string>* Types, std::vector<std::string> TextureList, ERS_OBJECT_MODEL* Model, aiMaterial *Mat, aiTextureType Type, std::string TypeName) {
+void STS_CLASS_ModelLoader::LoadMaterialTextures(std::vector<int>* IDs, std::vector<std::string>* Types, std::vector<std::string> TextureList, STS_OBJECT_MODEL* Model, aiMaterial *Mat, aiTextureType Type, std::string TypeName) {
 
     // Iterate Through Textures
     for (unsigned int i=0; i< Mat->GetTextureCount(Type); i++) {

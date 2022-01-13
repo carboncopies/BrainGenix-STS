@@ -42,15 +42,15 @@
  * @brief Class for loading models (fbx, gltx, etc.) based on the ASSIMP library
  * 
  */
-class ERS_CLASS_ModelLoader {
+class STS_CLASS_ModelLoader {
 
 
     private:
 
 
-        std::shared_ptr<ERS_STRUCT_SystemUtils> SystemUtils_; /**<System Utils Struct*/
+        std::shared_ptr<STS_STRUCT_SystemUtils> SystemUtils_; /**<System Utils Struct*/
 
-        std::vector<std::shared_ptr<ERS_OBJECT_MODEL>> WorkItems_; /**<Items For The Worker To Process*/
+        std::vector<std::shared_ptr<STS_OBJECT_MODEL>> WorkItems_; /**<Items For The Worker To Process*/
         std::vector<long> WorkIDs_; /**<Vector Containing IDs*/
         std::vector<bool> FlipTextures_; /**<vector Containing FlipTexture For Work Items*/
         std::vector<std::thread> WorkerThreads_; /**<List of worker threads*/
@@ -59,7 +59,7 @@ class ERS_CLASS_ModelLoader {
 
         void WorkerThread(); /**<Worker Thread Function*/
 
-        ERS_OBJECT_TEXTURE_2D LoadTexture(long ID, bool FlipTextures = false);
+        STS_OBJECT_TEXTURE_2D LoadTexture(long ID, bool FlipTextures = false);
 
         /**
          * @brief Function Used To Process Subnodes Of SceneFiles.
@@ -67,16 +67,16 @@ class ERS_CLASS_ModelLoader {
          * @param Node 
          * @param Scene 
          */
-        void ProcessNode(ERS_OBJECT_MODEL* Model, aiNode *Node, const aiScene *Scene, std::vector<std::string> TexturePaths);
+        void ProcessNode(STS_OBJECT_MODEL* Model, aiNode *Node, const aiScene *Scene, std::vector<std::string> TexturePaths);
 
         /**
          * @brief Process Meshes From Model.
          * 
          * @param Mesh 
          * @param Scene 
-         * @return ERS_OBJECT_MESH 
+         * @return STS_OBJECT_MESH 
          */
-        ERS_OBJECT_MESH ProcessMesh(ERS_OBJECT_MODEL* Model, aiMesh *Mesh, const aiScene *Scene, std::vector<std::string> TexturePaths);
+        STS_OBJECT_MESH ProcessMesh(STS_OBJECT_MODEL* Model, aiMesh *Mesh, const aiScene *Scene, std::vector<std::string> TexturePaths);
 
         /**
          * @brief Load Textures From Model.
@@ -84,14 +84,14 @@ class ERS_CLASS_ModelLoader {
          * @param Mat 
          * @param Type 
          * @param TypeName 
-         * @return std::vector<ERS_OBJECT_TEXTURE_2D> 
+         * @return std::vector<STS_OBJECT_TEXTURE_2D> 
          */
-        void LoadMaterialTextures(std::vector<int>* IDs, std::vector<std::string>* Types, std::vector<std::string> TextureList, ERS_OBJECT_MODEL* Model, aiMaterial *Mat, aiTextureType Type, std::string TypeName);
+        void LoadMaterialTextures(std::vector<int>* IDs, std::vector<std::string>* Types, std::vector<std::string> TextureList, STS_OBJECT_MODEL* Model, aiMaterial *Mat, aiTextureType Type, std::string TypeName);
 
 
     public:
 
-        void ProcessGPU(std::shared_ptr<ERS_OBJECT_MODEL> Model); /**<Process the GPU stuff for each model*/
+        void ProcessGPU(std::shared_ptr<STS_OBJECT_MODEL> Model); /**<Process the GPU stuff for each model*/
 
 
         /**
@@ -100,13 +100,13 @@ class ERS_CLASS_ModelLoader {
          * @param Logger 
          * @param TextureLoader 
          */
-        ERS_CLASS_ModelLoader(std::shared_ptr<ERS_STRUCT_SystemUtils> SystemUtils, int MaxThreadCount = -1);
+        STS_CLASS_ModelLoader(std::shared_ptr<STS_STRUCT_SystemUtils> SystemUtils, int MaxThreadCount = -1);
 
         /**
          * @brief Destroy the Model Loader object
          * 
          */
-        ~ERS_CLASS_ModelLoader();
+        ~STS_CLASS_ModelLoader();
 
 
         /**
@@ -114,9 +114,9 @@ class ERS_CLASS_ModelLoader {
          * 
          * @param AssetPath 
          * @param FlipTextures 
-         * @return ERS_OBJECT_MODEL 
+         * @return STS_OBJECT_MODEL 
          */
-        void LoadModel(long AssetID, std::shared_ptr<ERS_OBJECT_MODEL> Model, bool FlipTextures = false);
+        void LoadModel(long AssetID, std::shared_ptr<STS_OBJECT_MODEL> Model, bool FlipTextures = false);
 
 
         /**
@@ -124,10 +124,10 @@ class ERS_CLASS_ModelLoader {
          * 
          * @param ActiveScene 
          */
-        void ProcessNewModels(std::shared_ptr<ERS_OBJECT_SCENE> ActiveScene);
+        void ProcessNewModels(std::shared_ptr<STS_OBJECT_SCENE> ActiveScene);
 
 
-        void AddModelToLoadingQueue(long AssetID, std::shared_ptr<ERS_OBJECT_MODEL> Model, bool FlipTextures = false);
+        void AddModelToLoadingQueue(long AssetID, std::shared_ptr<STS_OBJECT_MODEL> Model, bool FlipTextures = false);
 
 
 
