@@ -34,8 +34,10 @@ int main() {
     Tri.V2 = V2;
     Tri.V3 = V3; 
 
-    for (long i = 0; i < 10000000; i++) {
-        STS_FUNCTION_CalculateTriangleArea(Tri);
-    }
+    std::cout<<STS_FUNCTION_CalculateTriangleArea(Tri)<<std::endl;
+
+    // for (long i = 0; i < 10000000; i++) {
+    //     STS_FUNCTION_CalculateTriangleArea(Tri);
+    // }
     
 }

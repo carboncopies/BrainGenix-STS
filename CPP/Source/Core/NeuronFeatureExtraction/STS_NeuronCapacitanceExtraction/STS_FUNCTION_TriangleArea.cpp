@@ -13,7 +13,10 @@ double STS_FUNCTION_CalculateTriangleArea(STS_STRUCT_Triangle Triangle) {
     double DistanceBC = STS_FUNCTION_CalculateLineDistance(Triangle.V2, Triangle.V3);
     double DistanceCA = STS_FUNCTION_CalculateLineDistance(Triangle.V3, Triangle.V1);
 
+    
     // Calculate Area
+
+    
     double Temp = (DistanceAB + DistanceBC + DistanceCA) / 2;
     double Area = sqrt((Temp * (Temp - DistanceAB) * (Temp - DistanceBC) * (Temp - DistanceCA)));
 
