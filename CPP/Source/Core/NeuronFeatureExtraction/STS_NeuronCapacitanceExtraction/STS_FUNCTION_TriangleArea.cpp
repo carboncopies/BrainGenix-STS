@@ -8,7 +8,7 @@
 
 double STS_FUNCTION_CalculateTriangleArea(STS_STRUCT_Triangle Triangle) {
 
-    // 
+    
 
 
 

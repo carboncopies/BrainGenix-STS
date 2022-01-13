@@ -2,6 +2,8 @@
 // This file is part of the BrainGenix-STS Scan Translation System //
 //=================================================================//
 
+#pragma once
+
 // Standard Libraries
 #include <iostream>
 #include <memory>

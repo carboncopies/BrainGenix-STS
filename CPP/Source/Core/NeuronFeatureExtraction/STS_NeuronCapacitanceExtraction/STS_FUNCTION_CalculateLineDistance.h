@@ -15,14 +15,10 @@
 
 
 /**
- * @brief This structure stores a triangle with x,y,z for all three vertices.
+ * @brief Calculate Distance Between Two 3D Vertices
  * 
+ * @param V1 
+ * @param V2 
+ * @return double 
  */
-struct STS_STRUCT_Triangle {
-
-    // Vertexes
-    STS_STRUCT_Vertex V1;
-    STS_STRUCT_Vertex V2;
-    STS_STRUCT_Vertex V3;
-
-};
+double STS_FUNCTION_CalculateLineDistance(STS_STRUCT_Vertex V1, STS_STRUCT_Vertex V2);
