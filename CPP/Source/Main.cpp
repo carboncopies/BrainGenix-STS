@@ -15,7 +15,6 @@
 #include <STS_CLASS_LoggingSystem.h>
 
 
-#include <STS_FUNCTION_CalculateLineDistance.h>
 #include <STS_FUNCTION_TriangleArea.h>
 
 int main() {
@@ -29,6 +28,10 @@ int main() {
     // Setup Logging System
     SystemUtils->Logger_ = std::make_shared<STS_CLASS_LoggingSystem>(SystemUtils->LocalSystemConfig);
     SystemUtils->Logger_->Log("Setting Up Logging System", 5);
+
+
+
+
 
 
 
