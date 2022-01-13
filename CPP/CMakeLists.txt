@@ -50,3 +50,4 @@ add_subdirectory(${SRC_DIR}/Core/NeuronFeatureExtraction/STS_NeuronCapacitanceEx
 
 
 add_subdirectory(${SRC_DIR}/Core/Utils/STS_LoggingSystem)
+add_subdirectory(${SRC_DIR}/Core/Utils/STS_ConfigurationLoader)

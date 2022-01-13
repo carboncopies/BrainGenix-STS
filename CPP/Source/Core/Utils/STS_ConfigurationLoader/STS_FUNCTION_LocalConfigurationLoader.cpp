@@ -5,6 +5,7 @@
 
 #include <STS_FUNCTION_LocalConfigurationLoader.h>
 
+
 // Define Load Config Function
 static YAML::Node STS_FUNCTION_LoadLocalConfig(const char* ConfigurationPath) {
 
