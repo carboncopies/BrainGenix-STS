@@ -37,7 +37,7 @@ target_link_libraries(${PROJECT_NAME}
 
   # Internal Libs
   STS_STRUCT_SystemUtils
-  
+
   STS_LocalConfigurationLoader
   STS_LoggingSystem
 

@@ -8,7 +8,10 @@
     Date Created: 2022-01-11
 */
 
+#include <STS_STRUCT_SystemUtils.h>
+
 #include <STS_FUNCTION_LocalConfigurationLoader.h>
+
 #include <STS_CLASS_LoggingSystem.h>
 
 
@@ -20,9 +23,13 @@ int main() {
     // Load Local Configuration
     YAML::Node LocalConfig = STS_FUNCTION_LoadLocalConfig("Config.yaml");
 
+
+    // Create System Utils System
+    std::shared_ptr<STS_STRUCT_SystemUtils> SystemUtils = std::make_shared<STS_STRUCT_SystemUtils>();
+
     // Setup Logging System
-    STS_CLASS_LoggingSystem LoggingSystem = STS_CLASS_LoggingSystem(LocalConfig);
-    LoggingSystem.Log("Setting Up Logging System", 5);
+    SystemUtils->Logger_ = std::make_shared<STS_CLASS_LoggingSystem>(LocalConfig);
+    SystemUtils->Logger_->Log("Setting Up Logging System", 5);
 
 
 
