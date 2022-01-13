@@ -8,7 +8,7 @@ AX = int(AX)
 AY = int(AY)
 AZ = int(AZ)
 
-A = list
+A = []
 A.append(AX)
 A.append(AY)
 A.append(AZ)
@@ -21,7 +21,7 @@ BX = int(BX)
 BY = int(BY)
 BZ = int(BZ)
 
-B = list
+B = []
 B.append(BX)
 B.append(BY)
 B.append(BZ)
@@ -34,12 +34,12 @@ CX = int(CX)
 CY = int(CY)
 CZ = int(CZ)
 
-C = list
+C = []
 C.append(CX)
 C.append(CY)
 C.append(CZ)
 
-def find_traingle_area(Point_A, Point_B, Point_C):
+def find_triangle_area(Point_A, Point_B, Point_C):
 
     # Extract Points
     PointAX = Point_A[0]
@@ -58,9 +58,7 @@ def find_traingle_area(Point_A, Point_B, Point_C):
     # find line length
 
     LineAB_Length = find_line_length(PointAX, PointAY, PointAZ, PointBX, PointBY, PointBZ)
-
     LineAC_Length = find_line_length(PointAX, PointAY, PointAZ, PointCX, PointCY, PointCZ)
-
     LineBC_Length = find_line_length(PointBX, PointBY, PointBZ, PointCX, PointCY, PointCZ)
 
     return "AB = " + str(LineAB_Length) + "\n AC = " + str(LineAC_Length) + "\n BC = " + str(LineAC_Length)
@@ -75,4 +73,4 @@ def find_line_length(X1, Y1, Z1, X2, Y2, Z2):
     return Length
 
 
-print(find_traingle_area(A,B,C))
+print(find_triangle_area(A,B,C))
