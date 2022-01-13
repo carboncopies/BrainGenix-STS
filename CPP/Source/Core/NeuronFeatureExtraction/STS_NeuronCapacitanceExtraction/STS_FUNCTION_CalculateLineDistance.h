@@ -8,6 +8,7 @@
 #include <iostream>
 #include <memory>
 
+#include <cmath>
 #include <math.h>
 
 // Third-Party Libraries
