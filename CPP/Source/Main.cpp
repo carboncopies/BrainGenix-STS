@@ -20,15 +20,14 @@
 
 int main() {
 
-    // Load Local Configuration
-    YAML::Node LocalConfig = STS_FUNCTION_LoadLocalConfig("Config.yaml");
-
-
     // Create System Utils System
     std::shared_ptr<STS_STRUCT_SystemUtils> SystemUtils = std::make_shared<STS_STRUCT_SystemUtils>();
 
+    // Load Local Configuration
+    SystemUtils->LocalSystemConfig = STS_FUNCTION_LoadLocalConfig("Config.yaml");
+
     // Setup Logging System
-    SystemUtils->Logger_ = std::make_shared<STS_CLASS_LoggingSystem>(LocalConfig);
+    SystemUtils->Logger_ = std::make_shared<STS_CLASS_LoggingSystem>(SystemUtils->LocalSystemConfig);
     SystemUtils->Logger_->Log("Setting Up Logging System", 5);
 
 
