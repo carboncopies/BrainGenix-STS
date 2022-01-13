@@ -43,3 +43,6 @@ target_link_libraries(${PROJECT_NAME}
 # Add Internal Libs
 add_subdirectory(${SRC_DIR}/Core/Structures/STS_STRUCT_Vertex)
 add_subdirectory(${SRC_DIR}/Core/Structures/STS_STRUCT_Triangle)
+
+
+add_subdirectory(${SRC_DIR}/Core/NeuronFeatureExtraction/STS_NeuronCapacitanceExtraction)

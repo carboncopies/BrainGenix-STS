@@ -10,10 +10,11 @@
 
 // Internal Libraries
 #include <STS_STRUCT_Triangle.h>
+#include <STS_STRUCT_Vertex.h>
 
 
 /**
  * @brief This function is used to calculate the area of a triangle in xyz space.
  * 
  */
-double STS_FUNCTION_CalculateTriangleArea();
+double STS_FUNCTION_CalculateTriangleArea(STS_STRUCT_Triangle Triangle);

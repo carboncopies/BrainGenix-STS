@@ -18,8 +18,13 @@ def find_traingle_area(Point_A, Point_B, Point_C):
 
     # find line length
 
-    LineAB_Length = (math.abs(PointAX - PointBX) * )
+    LineAB_Length = 
 
 
+def find_line_length(X1, Y1, Z1, X2, Y2, Z2):
 
+    XY = (math.sqrt((math.abs(X1 - X2) * math.abs(X1 - X2)) + (math.abs(Y1 - Y2) * math.abs(Y1 - Y2))))
+    
+    Length = (math.sqrt((XY * XY) + (math.abs(Z1 - Z2) * math.abs(Z1 - Z2))))
 
+    return Length
