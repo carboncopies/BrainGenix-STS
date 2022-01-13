@@ -12,6 +12,8 @@
 // Third-Party Libraries
 
 // Internal Libraries
+#include <STS_STRUCT_SystemUtils.h>
+
 
 
 /**
@@ -22,11 +24,22 @@ class STS_CLASS_TriangleAreaThreadingEngine {
 
 private:
 
-    
+    std::shared_ptr<STS_STRUCT_SystemUtils> SystemUtils_; /**System Utils Struct*/
 
 public:
 
+    /**
+     * @brief Construct a new sts class triangleareathreadingengine object
+     * 
+     * @param SystemUtils 
+     */
+    STS_CLASS_TriangleAreaThreadingEngine(std::shared_ptr<STS_STRUCT_SystemUtils> SystemUtils);
 
+    /**
+     * @brief Destroy the sts class triangleareathreadingengine object
+     * 
+     */
+    ~STS_CLASS_TriangleAreaThreadingEngine();
 
 
 };
