@@ -13,6 +13,7 @@
 
 // Internal Libraries
 #include <STS_STRUCT_SystemUtils.h>
+#include <STS_FUNCTION_GetNumCPUs.h>
 
 
 
@@ -25,6 +26,7 @@ class STS_CLASS_TriangleAreaThreadingEngine {
 private:
 
     std::shared_ptr<STS_STRUCT_SystemUtils> SystemUtils_; /**System Utils Struct*/
+    int NumWorkerThreads_; /**Number of Worker Threads To Be Used*/
 
 public:
 

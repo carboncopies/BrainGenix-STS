@@ -14,6 +14,12 @@ STS_CLASS_TriangleAreaThreadingEngine::STS_CLASS_TriangleAreaThreadingEngine(std
     // Log Initialization
     SystemUtils_->Logger_->Log("Initializing Triangle Area Threading Engine", 5);
 
+    // Detect Num Worker Threads
+    SystemUtils_->Logger_->Log("Detecting Number Of Worker Threads", 4);
+    NumWorkerThreads_ = STS_FUNCTION_GetNumberCPUs();
+    std::string CPUMessage = std::string("Found ") + std::to_string(NumWorkerThreads_) + std::string(" CPU Cores In System");
+    SystemUtils_->Logger_->Log(CPUMessage, 3);
+
 }
 
 // Destructor
@@ -23,3 +29,4 @@ STS_CLASS_TriangleAreaThreadingEngine::~STS_CLASS_TriangleAreaThreadingEngine() 
     SystemUtils_->Logger_->Log("Triangle Area Threading Engine Destructor Called", 6);
 
 }
+
