@@ -15,4 +15,11 @@
  * @brief This structure stores a vertex (xyz) in doubles.
  * 
  */
-struct STS_STRUCT_Vertex;
+struct STS_STRUCT_Vertex {
+
+    // XYZ Params
+    double X;
+    double Y;
+    double Z;
+
+};

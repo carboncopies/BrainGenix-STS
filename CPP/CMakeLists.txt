@@ -36,6 +36,7 @@ target_link_libraries(${PROJECT_NAME}
   yaml-cpp
 
   # Internal Libs
+  STS_NeuronCapacitanceExtraction
   )
 
 
