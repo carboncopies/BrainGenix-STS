@@ -20,6 +20,8 @@ STS_CLASS_TriangleAreaThreadingEngine::STS_CLASS_TriangleAreaThreadingEngine(std
     std::string CPUMessage = std::string("Found ") + std::to_string(NumWorkerThreads_) + std::string(" CPU Cores In System");
     SystemUtils_->Logger_->Log(CPUMessage.c_str(), 3);
 
+    // Create Worker Threads
+
 }
 
 // Destructor
