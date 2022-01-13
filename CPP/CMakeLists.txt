@@ -47,3 +47,6 @@ add_subdirectory(${SRC_DIR}/Core/Structures/STS_STRUCT_Triangle)
 
 
 add_subdirectory(${SRC_DIR}/Core/NeuronFeatureExtraction/STS_NeuronCapacitanceExtraction)
+
+
+add_subdirectory(${SRC_DIR}/Core/Utils/STS_LoggingSystem)
