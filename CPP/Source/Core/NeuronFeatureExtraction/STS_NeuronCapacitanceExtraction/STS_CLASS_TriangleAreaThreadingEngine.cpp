@@ -18,7 +18,7 @@ STS_CLASS_TriangleAreaThreadingEngine::STS_CLASS_TriangleAreaThreadingEngine(std
     SystemUtils_->Logger_->Log("Detecting Number Of Worker Threads", 4);
     NumWorkerThreads_ = STS_FUNCTION_GetNumberCPUs();
     std::string CPUMessage = std::string("Found ") + std::to_string(NumWorkerThreads_) + std::string(" CPU Cores In System");
-    SystemUtils_->Logger_->Log(CPUMessage, 3);
+    SystemUtils_->Logger_->Log(CPUMessage.c_str(), 3);
 
 }
 
