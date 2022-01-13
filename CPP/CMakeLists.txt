@@ -36,7 +36,9 @@ target_link_libraries(${PROJECT_NAME}
   yaml-cpp
 
   # Internal Libs
-  STS_ConfigurationLoader
+  STS_STRUCT_SystemUtils
+  
+  STS_LocalConfigurationLoader
   STS_LoggingSystem
 
   STS_NeuronCapacitanceExtraction
@@ -45,6 +47,7 @@ target_link_libraries(${PROJECT_NAME}
 
 
 # Add Internal Libs
+add_subdirectory(${SRC_DIR}/Core/Structures/STS_STRUCT_SystemUtils)
 add_subdirectory(${SRC_DIR}/Core/Structures/STS_STRUCT_Vertex)
 add_subdirectory(${SRC_DIR}/Core/Structures/STS_STRUCT_Triangle)
 
