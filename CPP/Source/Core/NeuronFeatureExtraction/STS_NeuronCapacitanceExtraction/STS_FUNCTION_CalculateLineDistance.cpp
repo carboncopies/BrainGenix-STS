@@ -13,8 +13,9 @@ double STS_FUNCTION_CalculateLineDistance(STS_STRUCT_Vertex V1, STS_STRUCT_Verte
     double ZComp = pow((V1.Z - V2.Z), 2);
 
     // Sum Components
+    double Distance = XComp + YComp + ZComp;
 
     // Return Value
-
+    return Distance;
 
 }
