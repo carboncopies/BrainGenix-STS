@@ -9,6 +9,8 @@
 #include <memory>
 #include <thread>
 #include <string>
+#include <vector>
+#include <mutex>
 
 // Third-Party Libraries
 
@@ -24,11 +26,28 @@
  */
 class STS_CLASS_TriangleAreaThreadingEngine {
 
+// Private Member Vars
 private:
 
     std::shared_ptr<STS_STRUCT_SystemUtils> SystemUtils_; /**System Utils Struct*/
     int NumWorkerThreads_; /**Number of Worker Threads To Be Used*/
 
+    std::vector<std::thread> WorkerThreads_; /**List of Worker Threads*/
+    bool TerminateWorkerThreads_; /**Control Var For Threads*/
+    std::mutex BlockThreads_; /**Blocks Threads From Operating*/
+
+
+// Private Methods
+private:
+
+    /**
+     * @brief Worker Function, Given Processing Index To Process Many Triangles At Once.
+     * 
+     */
+    void WorkerThread();
+
+
+// Public Methods
 public:
 
     /**
