@@ -23,7 +23,6 @@ include(${CMAKE_UTIL_DIR}/DisableTargetWarnings.cmake)
 # Include Package Addition Scripts
 include(${CMAKE_BUILD_UTILS_DIR}/Threads.cmake)
 include(${CMAKE_BUILD_UTILS_DIR}/YAML-CPP.cmake)
-include(${CMAKE_BUILD_UTILS_DIR}/Backward.cmake)
 include(${CMAKE_BUILD_UTILS_DIR}/Boost.cmake)
 include(${CMAKE_BUILD_UTILS_DIR}/GLM.cmake)
 include(${CMAKE_BUILD_UTILS_DIR}/FreeImage.cmake)
