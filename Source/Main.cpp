@@ -31,7 +31,7 @@ int main() {
     SystemUtils->Logger_->Log("Setting Up Logging System", 5);
 
 
-    // STS_CLASS_TriangleAreaThreadingEngine Test(SystemUtils);
+    STS_CLASS_TriangleAreaThreadingEngine Test(SystemUtils);
 
     
 }
