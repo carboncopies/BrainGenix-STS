@@ -47,7 +47,6 @@ target_link_libraries(${PROJECT_NAME}
   STS_NeuronCapacitanceExtraction
 
 
-  ${BACKWARD_ENABLE}
   )
 
 
