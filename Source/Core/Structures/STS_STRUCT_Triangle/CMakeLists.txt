@@ -12,7 +12,6 @@ add_library(STS_STRUCT_Triangle
             # Add Header Files (.h)
             "STS_STRUCT_Triangle.h"
             
-            ${BACKWARD_ENABLE}
             )
 
 # Link 3rd Party Libs

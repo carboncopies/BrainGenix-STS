@@ -12,7 +12,6 @@ add_library(STS_STRUCT_Vertex
             # Add Header Files (.h)
             "STS_STRUCT_Vertex.h"
             
-            ${BACKWARD_ENABLE}
             )
 
 # Link 3rd Party Libs

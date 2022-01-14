@@ -12,7 +12,6 @@ add_library(STS_ModelLoader
             # Add Header Files (.h)
             "STS_CLASS_ModelLoader.h"
             
-            ${BACKWARD_ENABLE}
             )
 
 # Link 3rd Party Libs
