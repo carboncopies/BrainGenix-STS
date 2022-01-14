@@ -3,7 +3,7 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2019, assimp team
+Copyright (c) 2006-2012, assimp team
 
 All rights reserved.
 
@@ -49,14 +49,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <map>
 
-namespace AssimpView {
+namespace AssimpView    {
 
 // ---------------------------------------------------------------------------------
 /** A little tree structure to match the scene's node structure, but holding
  *  additional data. Needs to be public to allow using it in templates at
  *  certain compilers.
  */
-struct SceneAnimNode {
+struct SceneAnimNode
+{
     std::string mName;
     SceneAnimNode* mParent;
     std::vector<SceneAnimNode*> mChildren;
@@ -68,15 +69,12 @@ struct SceneAnimNode {
     aiMatrix4x4 mGlobalTransform;
 
     //!  index in the current animation's channel array. -1 if not animated.
-    int mChannelIndex;
+    size_t mChannelIndex;
 
     //! Default construction
     SceneAnimNode()
     : mName()
-    , mParent(nullptr)
-    , mChildren()
-    , mLocalTransform()
-    , mGlobalTransform()
+    , mParent(NULL)
     , mChannelIndex(-1) {
         // empty
     }
@@ -84,11 +82,8 @@ struct SceneAnimNode {
     //! Construction from a given name
     SceneAnimNode( const std::string& pName)
     : mName( pName)
-    , mParent(nullptr)
-    , mChildren()
-    , mLocalTransform()
-    , mGlobalTransform()
-    , mChannelIndex(-1) {
+    , mParent(NULL)
+    , mChannelIndex( -1 ) {
         // empty
     }
 
@@ -110,7 +105,8 @@ struct SceneAnimNode {
  *  GetGlobalTransform(). A full set of bone matrices can be retrieved by
  *  GetBoneMatrices() for a given mesh.
  */
-class SceneAnimator {
+class SceneAnimator
+{
 public:
 
     // ----------------------------------------------------------------------------
@@ -190,6 +186,7 @@ public:
     const std::vector<aiMatrix4x4>& GetBoneMatrices( const aiNode* pNode,
         size_t pMeshIndex = 0);
 
+
     // ----------------------------------------------------------------------------
     /** @brief Get the current animation index
      */
@@ -201,7 +198,7 @@ public:
     /** @brief Get the current animation or NULL
      */
     aiAnimation* CurrentAnim() const {
-        return  static_cast<unsigned int>( mCurrentAnimIndex ) < mScene->mNumAnimations ? mScene->mAnimations[ mCurrentAnimIndex ] : NULL;
+        return  mCurrentAnimIndex < mScene->mNumAnimations ? mScene->mAnimations[ mCurrentAnimIndex ] : NULL;
     }
 
 protected:
@@ -224,7 +221,7 @@ protected:
     const aiScene* mScene;
 
     /** Current animation index */
-    int mCurrentAnimIndex;
+    size_t mCurrentAnimIndex;
 
     /** The AnimEvaluator we use to calculate the current pose for the current animation */
     AnimEvaluator* mAnimEvaluator;
@@ -242,6 +239,9 @@ protected:
 
     /** Array to return transformations results inside. */
     std::vector<aiMatrix4x4> mTransforms;
+
+    /** Identity matrix to return a reference to in case of error */
+    aiMatrix4x4 mIdentityMatrix;
 };
 
 } // end of namespace AssimpView

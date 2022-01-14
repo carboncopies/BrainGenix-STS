@@ -3,8 +3,7 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2019, assimp team
-
+Copyright (c) 2006-2017, assimp team
 
 
 All rights reserved.
@@ -45,72 +44,72 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <assimp/mesh.h>
 #include <assimp/scene.h>
 #include <assimp/Importer.hpp>
-#include "Common/ScenePreprocessor.h"
+#include <ScenePreprocessor.h>
 
 using namespace std;
 using namespace Assimp;
 
-class ScenePreprocessorTest : public ::testing::Test {
-public:
-    ScenePreprocessorTest()
-    : Test()
-    , mScenePreprocessor(nullptr)
-    , mScene(nullptr) {
-        // empty
-    }
 
-protected:
+class ScenePreprocessorTest : public ::testing::Test
+{
+public:
+
     virtual void SetUp();
     virtual void TearDown();
 
 protected:
-    void CheckIfOnly(aiMesh* p, unsigned int num, unsigned flag);
-    void ProcessAnimation(aiAnimation* anim) { mScenePreprocessor->ProcessAnimation(anim); }
-    void ProcessMesh(aiMesh* mesh) { mScenePreprocessor->ProcessMesh(mesh); }
 
-private:
-    ScenePreprocessor *mScenePreprocessor;
-    aiScene *mScene;
+    void CheckIfOnly(aiMesh* p, unsigned int num, unsigned flag);
+
+    void ProcessAnimation(aiAnimation* anim) { pp->ProcessAnimation(anim); }
+    void ProcessMesh(aiMesh* mesh) { pp->ProcessMesh(mesh); }
+
+    ScenePreprocessor* pp;
+    aiScene* scene;
 };
 
 // ------------------------------------------------------------------------------------------------
-void ScenePreprocessorTest::SetUp() {
+void ScenePreprocessorTest::SetUp()
+{
     // setup a dummy scene with a single node
-    mScene = new aiScene();
-    mScene->mRootNode = new aiNode();
-    mScene->mRootNode->mName.Set("<test>");
+    scene = new aiScene();
+    scene->mRootNode = new aiNode();
+    scene->mRootNode->mName.Set("<test>");
 
     // add some translation
-    mScene->mRootNode->mTransformation.a4 = 1.f;
-    mScene->mRootNode->mTransformation.b4 = 2.f;
-    mScene->mRootNode->mTransformation.c4 = 3.f;
+    scene->mRootNode->mTransformation.a4 = 1.f;
+    scene->mRootNode->mTransformation.b4 = 2.f;
+    scene->mRootNode->mTransformation.c4 = 3.f;
 
     // and allocate a ScenePreprocessor to operate on the scene
-    mScenePreprocessor = new ScenePreprocessor(mScene);
+    pp = new ScenePreprocessor(scene);
 }
 
 // ------------------------------------------------------------------------------------------------
-void ScenePreprocessorTest::TearDown() {
-    delete mScenePreprocessor;
-    delete mScene;
+void ScenePreprocessorTest::TearDown()
+{
+    delete pp;
+    delete scene;
 }
 
 // ------------------------------------------------------------------------------------------------
 // Check whether ProcessMesh() returns flag for a mesh that consist of primitives with num indices
-void ScenePreprocessorTest::CheckIfOnly(aiMesh* p, unsigned int num, unsigned int flag) {
+void ScenePreprocessorTest::CheckIfOnly(aiMesh* p, unsigned int num, unsigned int flag)
+{
     // Triangles only
     for (unsigned i = 0; i < p->mNumFaces;++i) {
         p->mFaces[i].mNumIndices = num;
     }
-    mScenePreprocessor->ProcessMesh(p);
+    pp->ProcessMesh(p);
     EXPECT_EQ(flag, p->mPrimitiveTypes);
     p->mPrimitiveTypes = 0;
 }
 
 // ------------------------------------------------------------------------------------------------
 // Check whether a mesh is preprocessed correctly. Case 1: The mesh needs preprocessing
-TEST_F(ScenePreprocessorTest, testMeshPreprocessingPos) {
-    aiMesh* p = new aiMesh;
+TEST_F(ScenePreprocessorTest, testMeshPreprocessingPos)
+{
+    aiMesh* p = new aiMesh();
     p->mNumFaces = 100;
     p->mFaces = new aiFace[p->mNumFaces];
 
@@ -145,8 +144,9 @@ TEST_F(ScenePreprocessorTest, testMeshPreprocessingPos) {
 
 // ------------------------------------------------------------------------------------------------
 // Check whether a mesh is preprocessed correctly. Case 1: The mesh doesn't need preprocessing
-TEST_F(ScenePreprocessorTest, testMeshPreprocessingNeg) {
-    aiMesh* p = new aiMesh;
+TEST_F(ScenePreprocessorTest, testMeshPreprocessingNeg)
+{
+    aiMesh* p = new aiMesh();
     p->mPrimitiveTypes = aiPrimitiveType_TRIANGLE|aiPrimitiveType_POLYGON;
     ProcessMesh(p);
 
@@ -159,7 +159,8 @@ TEST_F(ScenePreprocessorTest, testMeshPreprocessingNeg) {
 
 // ------------------------------------------------------------------------------------------------
 // Make a dummy animation with a single channel, '<test>'
-aiAnimation* MakeDummyAnimation() {
+aiAnimation* MakeDummyAnimation()
+{
     aiAnimation* p = new aiAnimation();
     p->mNumChannels = 1;
     p->mChannels = new aiNodeAnim*[1];
@@ -170,7 +171,8 @@ aiAnimation* MakeDummyAnimation() {
 
 // ------------------------------------------------------------------------------------------------
 // Check whether an anim is preprocessed correctly. Case 1: The anim needs preprocessing
-TEST_F(ScenePreprocessorTest, testAnimationPreprocessingPos) {
+TEST_F(ScenePreprocessorTest, testAnimationPreprocessingPos)
+{
     aiAnimation* p = MakeDummyAnimation();
     aiNodeAnim* anim = p->mChannels[0];
 

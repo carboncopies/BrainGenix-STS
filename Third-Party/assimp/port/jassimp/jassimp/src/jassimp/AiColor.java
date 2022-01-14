@@ -51,16 +51,6 @@ import java.nio.ByteBuffer;
  */
 public final class AiColor {
     /**
-     * Wrapped buffer.
-     */
-    private final ByteBuffer m_buffer;
-        
-    /**
-     * Offset into m_buffer. 
-     */
-    private final int m_offset;
-
-    /**
      * Constructor.
      * 
      * @param buffer the buffer to wrap
@@ -157,4 +147,16 @@ public final class AiColor {
         return "[" + getRed() + ", " + getGreen() + ", " + getBlue() + ", " + 
                 getAlpha() + "]";
     }
+
+
+    /**
+     * Wrapped buffer.
+     */
+    private final ByteBuffer m_buffer;
+    
+    
+    /**
+     * Offset into m_buffer. 
+     */
+    private final int m_offset;
 }

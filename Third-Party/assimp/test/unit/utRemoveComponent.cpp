@@ -3,8 +3,7 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2019, assimp team
-
+Copyright (c) 2006-2017, assimp team
 
 
 All rights reserved.
@@ -43,18 +42,22 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "UnitTestPCH.h"
 
 #include <assimp/scene.h>
-#include "PostProcessing/RemoveVCProcess.h"
-#include "Material/MaterialSystem.h"
+#include <RemoveVCProcess.h>
+#include <MaterialSystem.h>
+
 
 using namespace std;
 using namespace Assimp;
 
-class RemoveVCProcessTest : public ::testing::Test {
+class RemoveVCProcessTest : public ::testing::Test
+{
 public:
+
     virtual void SetUp();
     virtual void TearDown();
 
 protected:
+
     RemoveVCProcess* piProcess;
     aiScene* pScene;
 };
@@ -107,7 +110,7 @@ void RemoveVCProcessTest::SetUp()
     char check[sizeof(aiMaterial) == sizeof(aiMaterial) ? 10 : -1];
     check[0] = 0;
     // to remove compiler warning
-    EXPECT_EQ( 0, check[0] );
+    EXPECT_TRUE( check );
 }
 
 // ------------------------------------------------------------------------------------------------

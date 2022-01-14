@@ -641,7 +641,7 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,const CVTimeS
 {
     for(MeshHelper* helper in modelMeshes)
     {
-        // Set up material state.
+        // Set up meterial state.
         glCallList(helper.displayList);  
     }
 }

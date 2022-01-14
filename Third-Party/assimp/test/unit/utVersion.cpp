@@ -2,8 +2,7 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2019, assimp team
-
+Copyright (c) 2006-2017, assimp team
 
 
 All rights reserved.
@@ -55,7 +54,7 @@ TEST_F( utVersion, aiGetLegalStringTest ) {
 }
 
 TEST_F( utVersion, aiGetVersionMinorTest ) {
-    EXPECT_EQ( aiGetVersionMinor(), 1U );
+    EXPECT_EQ( aiGetVersionMinor(), 0U );
 }
     
 TEST_F( utVersion, aiGetVersionMajorTest ) {
@@ -69,9 +68,4 @@ TEST_F( utVersion, aiGetCompileFlagsTest ) {
 TEST_F( utVersion, aiGetVersionRevisionTest ) {
     EXPECT_NE( aiGetVersionRevision(), 0U );
 }
-
-TEST_F( utVersion, aiGetBranchNameTest ) {
-    EXPECT_NE( nullptr, aiGetBranchName() );
-}
-
 

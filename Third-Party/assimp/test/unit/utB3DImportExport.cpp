@@ -3,7 +3,8 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2019, assimp team
+Copyright (c) 2006-2017, assimp team
+
 
 All rights reserved.
 
@@ -44,7 +45,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractImportExportBase.h"
 
 #include <assimp/Importer.hpp>
-#include <assimp/postprocess.h>
 
 using namespace Assimp;
 
@@ -52,7 +52,7 @@ class utB3DImportExport : public AbstractImportExportBase {
 public:
     virtual bool importerTest() {
         Assimp::Importer importer;
-        const aiScene *scene = importer.ReadFile( ASSIMP_TEST_MODELS_DIR "/B3D/WusonBlitz.b3d", aiProcess_ValidateDataStructure );
+        const aiScene *scene = importer.ReadFile( ASSIMP_TEST_MODELS_DIR "/B3D/WusonBlitz.b3d", 0 );
         return nullptr != scene;
     }
 };

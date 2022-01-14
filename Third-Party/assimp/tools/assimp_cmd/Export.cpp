@@ -3,8 +3,7 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2019, assimp team
-
+Copyright (c) 2006-2017, assimp team
 
 
 All rights reserved.
@@ -106,8 +105,7 @@ int Assimp_Export(const char* const* params, unsigned int num)
 			continue;
 		}
 		if (!strncmp( params[i], "-f",2)) {
-            if ( strncmp( params[ i ], "-fi",3 ))
-			    outf = std::string(params[i]+2);
+			outf = std::string(params[i]+2);
 		}
 		else if ( !strncmp( params[i], "--format=",9)) {
 			outf = std::string(params[i]+9);

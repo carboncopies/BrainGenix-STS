@@ -231,8 +231,7 @@ namespace o3dgc
         float                   ReadFloat32Bin(unsigned long & position) const
                                 {
                                     unsigned long value = ReadUInt32Bin(position);
-                                    float fvalue;
-                                    memcpy(&fvalue, &value, 4);
+                                    float fvalue = *((float *)(&value));
                                     return fvalue;
                                 }
         unsigned long           ReadUInt32Bin(unsigned long & position)  const
@@ -262,8 +261,7 @@ namespace o3dgc
 
         void                    WriteFloat32ASCII(float value) 
                                 {
-                                    unsigned long uiValue;
-                                    memcpy(&uiValue, &value, 4);
+                                    unsigned long uiValue = *((unsigned long *)(&value));
                                     WriteUInt32ASCII(uiValue);
                                 }
         void                    WriteUInt32ASCII(unsigned long position, unsigned long value) 
@@ -316,8 +314,7 @@ namespace o3dgc
         float                   ReadFloat32ASCII(unsigned long & position) const
                                 {
                                     unsigned long value = ReadUInt32ASCII(position);
-                                    float fvalue;
-                                    memcpy(&fvalue, &value, 4);
+                                    float fvalue = *((float *)(&value));
                                     return fvalue;
                                 }
         unsigned long           ReadUInt32ASCII(unsigned long & position)  const
@@ -398,15 +395,15 @@ namespace o3dgc
                                 {
                                     return m_stream.GetSize();
                                 }
-    const unsigned char *       GetBuffer(unsigned long position) const
+    const unsigned char * const GetBuffer(unsigned long position) const
                                 {
                                     return m_stream.GetBuffer() + position;
                                 }
-    unsigned char *             GetBuffer(unsigned long position)
+    unsigned char * const       GetBuffer(unsigned long position)
                                 {
                                     return (m_stream.GetBuffer() + position);
                                 }                                
-    unsigned char *             GetBuffer()
+    unsigned char * const       GetBuffer()
                                 {
                                     return m_stream.GetBuffer();
                                 }                                

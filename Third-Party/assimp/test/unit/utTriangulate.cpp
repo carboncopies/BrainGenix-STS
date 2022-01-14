@@ -3,8 +3,7 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2019, assimp team
-
+Copyright (c) 2006-2017, assimp team
 
 
 All rights reserved.
@@ -43,8 +42,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "UnitTestPCH.h"
 
 #include <assimp/scene.h>
-
-#include "PostProcessing/TriangulateProcess.h"
+#include <TriangulateProcess.h>
 
 
 using namespace std;

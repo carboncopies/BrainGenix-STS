@@ -55,26 +55,6 @@ import java.util.List;
  */
 public final class AiAnimation {
     /**
-     * Name.
-     */
-    private final String m_name;
-    
-    /**
-     * Duration.
-     */
-    private final double m_duration;
-    
-    /**
-     * Ticks per second.
-     */
-    private final double m_ticksPerSecond;
-        
-    /**
-     * Bone animation channels.
-     */
-    private final List<AiNodeAnim> m_nodeAnims = new ArrayList<AiNodeAnim>();
-
-    /**
      * Constructor.
      * 
      * @param name name
@@ -171,5 +151,29 @@ public final class AiAnimation {
      */
     public List<AiMeshAnim> getMeshChannels() {
         throw new UnsupportedOperationException("not implemented yet");
-    }    
+    }
+    
+    
+    /**
+     * Name.
+     */
+    private final String m_name;
+    
+    
+    /**
+     * Duration.
+     */
+    private final double m_duration;
+    
+    
+    /**
+     * Ticks per second.
+     */
+    private final double m_ticksPerSecond;
+    
+    
+    /**
+     * Bone animation channels.
+     */
+    private final List<AiNodeAnim> m_nodeAnims = new ArrayList<AiNodeAnim>();
 }

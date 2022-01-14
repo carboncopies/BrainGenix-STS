@@ -3,8 +3,7 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2019, assimp team
-
+Copyright (c) 2006-2017, assimp team
 
 
 All rights reserved.
@@ -46,9 +45,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #define AI_SHADER_COMPILE_FLAGS D3DXSHADER_USE_LEGACY_D3DX9_31_DLL
 
-// Because Dx headers include windef.h with min/max redefinition
-#define NOMINMAX
-
 // include resource definitions
 #include "resource.h"
 
@@ -72,8 +68,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <assimp/LogStream.hpp>
 #include <assimp/DefaultLogger.hpp>
 
-#include "Material/MaterialSystem.h"   // aiMaterial class
-#include <assimp/StringComparison.h>   // ASSIMP_stricmp and ASSIMP_strincmp
+
+#include "../../code/MaterialSystem.h"   // aiMaterial class
+#include "../../code/StringComparison.h" // ASSIMP_stricmp and ASSIMP_strincmp
 
 #include <time.h>
 
@@ -179,7 +176,7 @@ type clamp(intype in)
 {
     // for unsigned types only ...
     intype mask = (0x1u << (sizeof(type)*8))-1;
-    return (type)std::max((intype)0,std::min(in,mask));
+    return (type)max((intype)0,min(in,mask));
 }
 
 

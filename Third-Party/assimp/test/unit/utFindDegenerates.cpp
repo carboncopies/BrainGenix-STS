@@ -3,7 +3,8 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2019, assimp team
+Copyright (c) 2006-2017, assimp team
+
 
 All rights reserved.
 
@@ -40,49 +41,44 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "UnitTestPCH.h"
 
-#include "PostProcessing/FindDegenerates.h"
+#include <FindDegenerates.h>
+
 
 using namespace std;
 using namespace Assimp;
 
 class FindDegeneratesProcessTest : public ::testing::Test {
 public:
-    FindDegeneratesProcessTest()
-    : Test()
-    , mMesh( nullptr )
-    , mProcess( nullptr ) {
-        // empty
-    }
-
-protected:
     virtual void SetUp();
     virtual void TearDown();
 
 protected:
-    aiMesh* mMesh;
-    FindDegeneratesProcess* mProcess;
+    aiMesh* mesh;
+    FindDegeneratesProcess* process;
 };
 
-void FindDegeneratesProcessTest::SetUp() {
-    mMesh = new aiMesh();
-    mProcess = new FindDegeneratesProcess();
+// ------------------------------------------------------------------------------------------------
+void FindDegeneratesProcessTest::SetUp()
+{
+    mesh = new aiMesh();
+    process = new FindDegeneratesProcess();
 
-    mMesh->mNumFaces = 1000;
-    mMesh->mFaces = new aiFace[1000];
+    mesh->mNumFaces = 1000;
+    mesh->mFaces = new aiFace[1000];
 
-    mMesh->mNumVertices = 5000*2;
-    mMesh->mVertices = new aiVector3D[5000*2];
+    mesh->mNumVertices = 5000*2;
+    mesh->mVertices = new aiVector3D[5000*2];
 
     for (unsigned int i = 0; i < 5000; ++i) {
-        mMesh->mVertices[i] = mMesh->mVertices[i+5000] = aiVector3D((float)i);
+        mesh->mVertices[i] = mesh->mVertices[i+5000] = aiVector3D((float)i);
     }
 
-    mMesh->mPrimitiveTypes = aiPrimitiveType_LINE | aiPrimitiveType_POINT |
+    mesh->mPrimitiveTypes = aiPrimitiveType_LINE | aiPrimitiveType_POINT |
     aiPrimitiveType_POLYGON | aiPrimitiveType_TRIANGLE;
 
     unsigned int numOut = 0, numFaces = 0;
     for (unsigned int i = 0; i < 1000; ++i) {
-        aiFace& f = mMesh->mFaces[i];
+        aiFace& f = mesh->mFaces[i];
     f.mNumIndices = (i % 5)+1; // between 1 and 5
     f.mIndices = new unsigned int[f.mNumIndices];
     bool had = false;
@@ -107,46 +103,44 @@ void FindDegeneratesProcessTest::SetUp() {
         if (!had)
             ++numFaces;
     }
-    mMesh->mNumUVComponents[0] = numOut;
-    mMesh->mNumUVComponents[1] = numFaces;
+    mesh->mNumUVComponents[0] = numOut;
+    mesh->mNumUVComponents[1] = numFaces;
 }
 
-void FindDegeneratesProcessTest::TearDown() {
-    delete mMesh;
-    delete mProcess;
+// ------------------------------------------------------------------------------------------------
+void FindDegeneratesProcessTest::TearDown()
+{
+    delete mesh;
+    delete process;
 }
 
-TEST_F(FindDegeneratesProcessTest, testDegeneratesDetection) {
-    mProcess->EnableInstantRemoval(false);
-    mProcess->ExecuteOnMesh(mMesh);
+// ------------------------------------------------------------------------------------------------
+TEST_F(FindDegeneratesProcessTest, testDegeneratesDetection)
+{
+    process->EnableInstantRemoval(false);
+    process->ExecuteOnMesh(mesh);
 
     unsigned int out = 0;
     for (unsigned int i = 0; i < 1000; ++i) {
-        aiFace& f = mMesh->mFaces[i];
+        aiFace& f = mesh->mFaces[i];
         out += f.mNumIndices;
     }
 
-    EXPECT_EQ(1000U, mMesh->mNumFaces);
-    EXPECT_EQ(10000U, mMesh->mNumVertices);
-    EXPECT_EQ(out, mMesh->mNumUVComponents[0]);
+    EXPECT_EQ(1000U, mesh->mNumFaces);
+    EXPECT_EQ(10000U, mesh->mNumVertices);
+    EXPECT_EQ(out, mesh->mNumUVComponents[0]);
     EXPECT_EQ(static_cast<unsigned int>(
                   aiPrimitiveType_LINE | aiPrimitiveType_POINT |
                   aiPrimitiveType_POLYGON | aiPrimitiveType_TRIANGLE),
-              mMesh->mPrimitiveTypes);
+              mesh->mPrimitiveTypes);
 }
 
-TEST_F(FindDegeneratesProcessTest, testDegeneratesRemoval) {
-    mProcess->EnableAreaCheck(false);
-    mProcess->EnableInstantRemoval(true);
-    mProcess->ExecuteOnMesh(mMesh);
+// ------------------------------------------------------------------------------------------------
+TEST_F(FindDegeneratesProcessTest, testDegeneratesRemoval)
+{
+    process->EnableInstantRemoval(true);
+    process->ExecuteOnMesh(mesh);
 
-    EXPECT_EQ(mMesh->mNumUVComponents[1], mMesh->mNumFaces);
+    EXPECT_EQ(mesh->mNumUVComponents[1], mesh->mNumFaces);
 }
 
-TEST_F(FindDegeneratesProcessTest, testDegeneratesRemovalWithAreaCheck) {
-    mProcess->EnableAreaCheck(true);
-    mProcess->EnableInstantRemoval(true);
-    mProcess->ExecuteOnMesh(mMesh);
-
-    EXPECT_EQ(mMesh->mNumUVComponents[1]-100, mMesh->mNumFaces);
-}

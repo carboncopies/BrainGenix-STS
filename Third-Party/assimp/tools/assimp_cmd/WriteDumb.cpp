@@ -3,8 +3,7 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2019, assimp team
-
+Copyright (c) 2006-2017, assimp team
 
 
 All rights reserved.
@@ -46,7 +45,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "Main.h"
-#include "PostProcessing/ProcessHelper.h"
+#include "../code/ProcessHelper.h"
 
 const char* AICMD_MSG_DUMP_HELP = 
 "assimp dump <model> [<out>] [-b] [-s] [-z] [common parameters]\n"
@@ -59,7 +58,7 @@ const char* AICMD_MSG_DUMP_HELP =
 "\t -cfull    Fires almost all post processing steps \n"
 ;
 
-#include "Common/assbin_chunks.h"
+#include "../../code/assbin_chunks.h"
 
 FILE* out = NULL;
 bool shortened = false;
@@ -82,18 +81,15 @@ void CompressBinaryDump(const char* file, unsigned int head_size)
 	uint8_t* data = new uint8_t[size];
 	fread(data,1,size,p);
 
-	uint32_t uncompressed_size = size-head_size;
-	uLongf out_size = (uLongf)compressBound(uncompressed_size);
+	uLongf out_size = (uLongf)((size-head_size) * 1.001 + 12.);
 	uint8_t* out = new uint8_t[out_size];
 
-	int res = compress2(out,&out_size,data+head_size,uncompressed_size,9);
-	if(res != Z_OK)
-		fprintf(stderr, "compress2: error\n");
+	compress2(out,&out_size,data+head_size,size-head_size,9);
 	fclose(p);
 	p = fopen(file,"w");
 
 	fwrite(data,head_size,1,p);
-	fwrite(&uncompressed_size,4,1,p); // write size of uncompressed data
+	fwrite(&out_size,4,1,p); // write size of uncompressed data
 	fwrite(out,out_size,1,p);
 
 	fclose(p);
@@ -184,17 +180,6 @@ inline uint32_t Write<aiVector3D>(const aiVector3D& v)
 // -----------------------------------------------------------------------------------
 // Serialize a color value
 template <>
-inline uint32_t Write<aiColor3D>(const aiColor3D& v)
-{
-	uint32_t t = Write<float>(v.r);
-	t += Write<float>(v.g);
-	t += Write<float>(v.b);
-	return t;
-}
-
-// -----------------------------------------------------------------------------------
-// Serialize a color value
-template <>
 inline uint32_t Write<aiColor4D>(const aiColor4D& v)
 {
 	uint32_t t = Write<float>(v.r);
@@ -213,7 +198,6 @@ inline uint32_t Write<aiQuaternion>(const aiQuaternion& v)
 	t += Write<float>(v.x);
 	t += Write<float>(v.y);
 	t += Write<float>(v.z);
-	ai_assert(t == 16);
 	return 16;
 }
 
@@ -276,12 +260,9 @@ inline uint32_t WriteBounds(const T* in, unsigned int size)
 void ChangeInteger(uint32_t ofs,uint32_t n)
 {
 	const uint32_t cur = ftell(out);
-    int retCode;
-    retCode = fseek(out, ofs, SEEK_SET);
-    ai_assert(0 == retCode);
-	fwrite(&n, 4, 1, out);
-    retCode = fseek(out, cur, SEEK_SET);
-    ai_assert(0 == retCode);
+	fseek(out,ofs,SEEK_SET);
+	fwrite(&n,4,1,out);
+	fseek(out,cur,SEEK_SET);
 }
 
 // -----------------------------------------------------------------------------------
@@ -584,9 +565,9 @@ uint32_t WriteBinaryLight(const aiLight* l)
 		len += Write<float>(l->mAttenuationQuadratic);
 	}
 
-	len += Write<aiColor3D>(l->mColorDiffuse);
-	len += Write<aiColor3D>(l->mColorSpecular);
-	len += Write<aiColor3D>(l->mColorAmbient);
+	len += Write<aiVector3D>((const aiVector3D&)l->mColorDiffuse);
+	len += Write<aiVector3D>((const aiVector3D&)l->mColorSpecular);
+	len += Write<aiVector3D>((const aiVector3D&)l->mColorAmbient);
 
 	if (l->mType == aiLightSource_SPOT) {
 		len += Write<float>(l->mAngleInnerCone);
@@ -682,13 +663,7 @@ void WriteBinaryDump(const aiScene* scene, FILE* _out, const char* src, const ch
 	shortened = _shortened;
 
 	time_t tt = time(NULL);
-#if _WIN32
-    tm* p = gmtime(&tt);
-#else
-    struct tm now;
-    tm* p = gmtime_r(&tt, &now);
-#endif
-    ai_assert(nullptr != p);
+	tm* p     = gmtime(&tt);
 
 	// header
 	fprintf(out,"ASSIMP.binary-dump.%s",asctime(p));
@@ -870,13 +845,7 @@ static std::string encodeXML(const std::string& data) {
 void WriteDump(const aiScene* scene, FILE* out, const char* src, const char* cmd, bool shortened)
 {
 	time_t tt = ::time(NULL);
-#if _WIN32
-    tm* p = gmtime(&tt);
-#else
-    struct tm now;
-    tm* p = gmtime_r(&tt, &now);
-#endif
-    ai_assert(nullptr != p);
+	tm* p     = ::gmtime(&tt);
 
 	std::string c = cmd;
 	std::string::size_type s; 
@@ -1336,6 +1305,10 @@ int Assimp_Dump (const char* const* params, unsigned int num)
 {
 	const char* fail = "assimp dump: Invalid number of arguments. "
 			"See \'assimp dump --help\'\r\n";
+	if (num < 1) {
+		printf("%s", fail);
+		return 1;
+	}
 
 	// --help
 	if (!strcmp( params[0], "-h") || !strcmp( params[0], "--help") || !strcmp( params[0], "-?") ) {

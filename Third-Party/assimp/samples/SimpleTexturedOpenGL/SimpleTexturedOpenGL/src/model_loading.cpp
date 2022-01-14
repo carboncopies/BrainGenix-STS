@@ -13,13 +13,10 @@
 // http://nehe.gamedev.net/
 // ----------------------------------------------------------------------------
 #include <windows.h>
-#include <shellapi.h>
 #include <stdio.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
-
-#define STB_IMAGE_IMPLEMENTATION
-#include "contrib/stb_image/stb_image.h"
+#include <IL/il.h>
 
 #include <fstream>
 
@@ -27,16 +24,18 @@
 #include <string.h>
 #include <map>
 
+
 // assimp include files. These three are usually needed.
-#include <assimp/Importer.hpp>
-#include <assimp/postprocess.h>
-#include <assimp/scene.h>
-#include <assimp/DefaultLogger.hpp>
-#include <assimp/LogStream.hpp>
+#include "assimp/Importer.hpp"	//OO version Header!
+#include "assimp/postprocess.h"
+#include "assimp/scene.h"
+#include "assimp/DefaultLogger.hpp"
+#include "assimp/LogStream.hpp"
 
 
 // The default hard-coded path. Can be overridden by supplying a path through the command line.
 static std::string modelpath = "../../test/models/OBJ/spider.obj";
+
 
 HGLRC		hRC=NULL;			// Permanent Rendering Context
 HDC			hDC=NULL;			// Private GDI Device Context
@@ -74,6 +73,7 @@ GLuint*		textureIds;							// pointer to texture Array
 
 // Create an instance of the Importer class
 Assimp::Importer importer;
+
 
 void createAILogger()
 {
@@ -172,22 +172,21 @@ std::string getBasePath(const std::string& path)
 
 int LoadGLTextures(const aiScene* scene)
 {
-	//ILboolean success;
+	ILboolean success;
 
 	/* Before calling ilInit() version should be checked. */
-	/*if (ilGetInteger(IL_VERSION_NUM) < IL_VERSION)
+	if (ilGetInteger(IL_VERSION_NUM) < IL_VERSION)
 	{
 		/// wrong DevIL version ///
 		std::string err_msg = "Wrong DevIL version. Old devil.dll in system32/SysWow64?";
 		char* cErr_msg = (char *) err_msg.c_str();
 		abortGLInit(cErr_msg);
 		return -1;
-	}*/
+	}
 
-	//ilInit(); /* Initialization of DevIL */
+	ilInit(); /* Initialization of DevIL */
 
-    if (scene->HasTextures()) return 1;
-        //abortGLInit("Support for meshes with embedded textures is not implemented");
+	if (scene->HasTextures()) abortGLInit("Support for meshes with embedded textures is not implemented");
 
 	/* getTexture Filenames and Numb of Textures */
 	for (unsigned int m=0; m<scene->mNumMaterials; m++)
@@ -207,13 +206,12 @@ int LoadGLTextures(const aiScene* scene)
 
 	int numTextures = textureIdMap.size();
 
-
 	/* array with DevIL image IDs */
-	//ILuint* imageIds = NULL;
-//	imageIds = new ILuint[numTextures];
+	ILuint* imageIds = NULL;
+	imageIds = new ILuint[numTextures];
 
 	/* generate DevIL Image IDs */
-//	ilGenImages(numTextures, imageIds); /* Generation of numTextures image names */
+	ilGenImages(numTextures, imageIds); /* Generation of numTextures image names */
 
 	/* create and fill array with GL texture ids */
 	textureIds = new GLuint[numTextures];
@@ -232,22 +230,21 @@ int LoadGLTextures(const aiScene* scene)
 		itr++;								  // next texture
 
 
-		//ilBindImage(imageIds[i]); /* Binding of DevIL image name */
+		ilBindImage(imageIds[i]); /* Binding of DevIL image name */
 		std::string fileloc = basepath + filename;	/* Loading of image */
-		//success = ilLoadImage(fileloc.c_str());
-        int x, y, n;
-        unsigned char *data = stbi_load(fileloc.c_str(), &x, &y, &n, STBI_rgb_alpha);
+		success = ilLoadImage(fileloc.c_str());
 
-		if (nullptr != data )
+		if (success) /* If no error occurred: */
 		{
             // Convert every colour component into unsigned byte.If your image contains
             // alpha channel you can replace IL_RGB with IL_RGBA
-            //success = ilConvertImage(IL_RGB, IL_UNSIGNED_BYTE);
-			/*if (!success)
+            success = ilConvertImage(IL_RGB, IL_UNSIGNED_BYTE);
+			if (!success)
 			{
+				/* Error occurred */
 				abortGLInit("Couldn't convert image");
 				return -1;
-			}*/
+			}
             // Binding of texture name
             glBindTexture(GL_TEXTURE_2D, textureIds[i]);
 			// redefine standard texture values
@@ -256,15 +253,15 @@ int LoadGLTextures(const aiScene* scene)
             // We will use linear interpolation for minifying filter
             glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
             // Texture specification
-            glTexImage2D(GL_TEXTURE_2D, 0, n, x, y, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);// Texture specification.
-
+            glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_BPP), ilGetInteger(IL_IMAGE_WIDTH),
+				ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE,
+				ilGetData());
             // we also want to be able to deal with odd texture dimensions
             glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
             glPixelStorei( GL_UNPACK_ROW_LENGTH, 0 );
             glPixelStorei( GL_UNPACK_SKIP_PIXELS, 0 );
             glPixelStorei( GL_UNPACK_SKIP_ROWS, 0 );
-            stbi_image_free(data);
-        }
+		}
 		else
 		{
 			/* Error occurred */
@@ -272,11 +269,11 @@ int LoadGLTextures(const aiScene* scene)
 		}
 	}
     // Because we have already copied image data into texture data  we can release memory used by image.
-//	ilDeleteImages(numTextures, imageIds);
+	ilDeleteImages(numTextures, imageIds);
 
 	// Cleanup
-	//delete [] imageIds;
-	//imageIds = NULL;
+	delete [] imageIds;
+	imageIds = NULL;
 
 	return TRUE;
 }
@@ -669,7 +666,7 @@ BOOL CreateGLWindow(const char* title, int width, int height, int bits, bool ful
 		PFD_SUPPORT_OPENGL |							// Format Must Support OpenGL
 		PFD_DOUBLEBUFFER,								// Must Support Double Buffering
 		PFD_TYPE_RGBA,									// Request An RGBA Format
-		BYTE(bits),											// Select Our Color Depth
+		bits,											// Select Our Color Depth
 		0, 0, 0, 0, 0, 0,								// Color Bits Ignored
 		0,												// No Alpha Buffer
 		0,												// Shift Bit Ignored

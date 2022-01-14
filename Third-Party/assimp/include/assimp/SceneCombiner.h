@@ -2,8 +2,7 @@
 Open Asset Import Library (assimp)
 ----------------------------------------------------------------------
 
-Copyright (c) 2006-2019, assimp team
-
+Copyright (c) 2006-2017, assimp team
 
 All rights reserved.
 
@@ -65,7 +64,6 @@ struct aiLight;
 struct aiMetadata;
 struct aiBone;
 struct aiMesh;
-struct aiAnimMesh;
 struct aiAnimation;
 struct aiNodeAnim;
 
@@ -199,17 +197,13 @@ struct SceneHelper
  * The class is currently being used by various postprocessing steps
  * and loaders (ie. LWS).
  */
-class ASSIMP_API SceneCombiner {
+class ASSIMP_API SceneCombiner
+{
     // class cannot be instanced
-    SceneCombiner() {
-        // empty
-    }
-
-    ~SceneCombiner() {
-        // empty
-    }
+    SceneCombiner() {}
 
 public:
+
     // -------------------------------------------------------------------
     /** Merges two or more scenes.
      *
@@ -223,9 +217,10 @@ public:
     static void MergeScenes(aiScene** dest,std::vector<aiScene*>& src,
         unsigned int flags = 0);
 
+
     // -------------------------------------------------------------------
-    /** Merges two or more scenes and attaches all scenes to a specific
-     *  position in the node graph of the master scene.
+    /** Merges two or more scenes and attaches all sceenes to a specific
+     *  position in the node graph of the masteer scene.
      *
      *  @param dest Receives a pointer to the destination scene. If the
      *    pointer doesn't point to NULL when the function is called, the
@@ -240,6 +235,7 @@ public:
     static void MergeScenes(aiScene** dest, aiScene* master,
         std::vector<AttachmentInfo>& src,
         unsigned int flags = 0);
+
 
     // -------------------------------------------------------------------
     /** Merges two or more meshes
@@ -258,6 +254,7 @@ public:
     static void MergeMeshes(aiMesh** dest,unsigned int flags,
         std::vector<aiMesh*>::const_iterator begin,
         std::vector<aiMesh*>::const_iterator end);
+
 
     // -------------------------------------------------------------------
     /** Merges two or more bones
@@ -364,7 +361,6 @@ public:
     static void Copy     (aiMesh** dest, const aiMesh* src);
 
     // similar to Copy():
-    static void Copy  (aiAnimMesh** dest, const aiAnimMesh* src);
     static void Copy  (aiMaterial** dest, const aiMaterial* src);
     static void Copy  (aiTexture** dest, const aiTexture* src);
     static void Copy  (aiAnimation** dest, const aiAnimation* src);

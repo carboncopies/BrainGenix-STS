@@ -135,9 +135,10 @@ bool OpenDDLExport::writeToStream( const std::string &statement ) {
 }
 
 bool OpenDDLExport::writeNode( DDLNode *node, std::string &statement ) {
+    bool success( true );
     writeNodeHeader( node, statement );
     if (node->hasProperties()) {
-        writeProperties( node, statement );
+        success |= writeProperties( node, statement );
     }
     writeLineEnd( statement );
 
@@ -359,10 +360,11 @@ bool OpenDDLExport::writeValueArray( DataArrayList *al, std::string &statement )
     }
 
     DataArrayList *nextDataArrayList = al ;
+    Value *nextValue( nextDataArrayList->m_dataList );
     while (ddl_nullptr != nextDataArrayList) {
         if (ddl_nullptr != nextDataArrayList) {
             statement += "{ ";
-            Value *nextValue( nextDataArrayList->m_dataList );
+            nextValue = nextDataArrayList->m_dataList;
             size_t idx( 0 );
             while (ddl_nullptr != nextValue) {
                 if (idx > 0) {

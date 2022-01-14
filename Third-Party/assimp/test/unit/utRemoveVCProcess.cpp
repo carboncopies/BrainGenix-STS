@@ -3,8 +3,7 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2019, assimp team
-
+Copyright (c) 2006-2017, assimp team
 
 
 All rights reserved.
@@ -41,8 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ---------------------------------------------------------------------------
 */
 #include "UnitTestPCH.h"
-#include "PostProcessing/RemoveVCProcess.h"
-
+#include "code/RemoveVCProcess.h"
 #include <assimp/mesh.h>
 #include <assimp/scene.h>
 
@@ -72,7 +70,6 @@ TEST_F( utRevmoveVCProcess, issue1266_ProcessMeshTest_NoCrash ) {
     mesh->mNumVertices = 1;
     mesh->mColors[ 0 ] = new aiColor4D[ 2 ];
     scene->mMeshes[ 0 ] = mesh;
-    std::unique_ptr<RemoveVCProcess> process(new RemoveVCProcess);
+    RemoveVCProcess *process = new RemoveVCProcess;
     process->Execute( scene );
-    delete scene;
 }
