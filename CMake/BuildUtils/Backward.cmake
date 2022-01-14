@@ -3,5 +3,6 @@
 ##########################
 
 STSBuildLogger(${Green} "Configuring Backward Library")
-add_subdirectory(${LIB_DIR}/backward-cpp)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+add_subdirectory(${LIB_DIR}/backward)
 STSBuildLogger(${BoldGreen} "Finished Configuring Backward Library")
