@@ -42,7 +42,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "UnitTestPCH.h"
 #include "SceneDiffer.h"
 #include "AbstractImportExportBase.h"
-#include "MMDImporter.h"
+#include "MMD/MMDImporter.h"
 
 #include <assimp/Importer.hpp>
 
@@ -52,7 +52,7 @@ class utPMXImporter : public AbstractImportExportBase {
 public:
     virtual bool importerTest() {
         Assimp::Importer importer;
-        /*const aiScene *scene = importer.ReadFile( ASSIMP_TEST_MODELS_DIR "/../models-nonbsd/MMD/Alicia_blade.pmx", 0 );
+        /*const aiScene *scene = importer.ReadFile( ASSIMP_TEST_MODELS_DIR "/../models-nonbsd/MMD/Alicia_blade.pmx", aiProcess_ValidateDataStructure );
         return nullptr != scene;*/
         return true;
     }
