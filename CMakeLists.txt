@@ -27,8 +27,7 @@ include(${CMAKE_BUILD_UTILS_DIR}/Backward.cmake)
 include(${CMAKE_BUILD_UTILS_DIR}/Boost.cmake)
 include(${CMAKE_BUILD_UTILS_DIR}/GLM.cmake)
 include(${CMAKE_BUILD_UTILS_DIR}/FreeImage.cmake)
-
-# include(${CMAKE_BUILD_UTILS_DIR}/Assimp.cmake)
+include(${CMAKE_BUILD_UTILS_DIR}/Assimp.cmake)
 
 
 
