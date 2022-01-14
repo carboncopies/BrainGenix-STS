@@ -20,6 +20,7 @@ add_library(STS_NeuronCapacitanceExtraction
             "STS_FUNCTION_CalculateLineDistance.h"
             "STS_FUNCTION_TriangleArea.h"
 
+            ${BACKWARD_ENABLE}
             )
 
 # Link 3rd Party Libs

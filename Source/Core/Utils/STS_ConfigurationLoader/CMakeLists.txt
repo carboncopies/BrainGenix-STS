@@ -12,6 +12,7 @@ add_library(STS_LocalConfigurationLoader
             # Add Header Files (.h)
             "STS_FUNCTION_LocalConfigurationLoader.h"
             
+            ${BACKWARD_ENABLE}
             )
 
 # Link 3rd Party Libs

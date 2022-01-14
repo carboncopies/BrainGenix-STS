@@ -12,6 +12,7 @@ add_library(STS_LoggingSystem
             # Add Header Files (.h)
             "STS_CLASS_LoggingSystem.h"
             
+            ${BACKWARD_ENABLE}
             )
 
 # Link 3rd Party Libs
