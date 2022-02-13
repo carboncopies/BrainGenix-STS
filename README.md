@@ -1,7 +1,7 @@
 
 # What is BrainGenix-STS?
 
-BrainGenix-STS is the Scan Translation System division of the BrainGenix Department. The main goal of STS is the functional translation of architectural data from scans of brain tissue and the to-be-developed generic working model of the human brain. Depending on feasibility, additional functional data may be incorporated as required. STS will incorporate the functional and structural data it recieves into a workable model to be run on the other divisions of the BrainGenix software suite, namely NES and ERS.
+BrainGenix Scan Translation System (STS) aims to facilitate the functional translation of architectural data from scans of brain tissue and the to-be-developed generic working model of the human brain. Depending on feasibility, additional functional data may be incorporated as required. STS will incorporate the functional and structural data it receives into a workable model to be run on the other divisions of the BrainGenix software suite, namely NES and ERS.
 
 ## Key Features
 
