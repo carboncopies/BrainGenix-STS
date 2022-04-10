@@ -69,12 +69,12 @@ REstructs = re.compile(r''
                 r'\}\s*(PACK_STRUCT)?;'                      # };
                 , re.IGNORECASE + re.DOTALL + re.MULTILINE)
 
-# Clean desc 
+# Clean desc
 REdesc = re.compile(r''
                 r'^\s*?([*]|/\*\*)(?P<line>.*?)'            #  * line 
                 , re.IGNORECASE + re.DOTALL + re.MULTILINE)
 
-# Remove #ifdef __cplusplus   
+# Remove #ifdef __cplusplus
 RErmifdef = re.compile(r''
                 r'#ifdef __cplusplus'                       # #ifdef __cplusplus
                 r'(?P<code>.*)'                             #   code 
@@ -87,7 +87,7 @@ RErpcom = re.compile(r''
                 r'(?P<line>.*?)'                            #  * line 
                 , re.IGNORECASE + re.DOTALL)
                 
-# Restructure 
+# Restructure
 def GetType(type, prefix='c_'):
     t = type
     while t.endswith('*'):
