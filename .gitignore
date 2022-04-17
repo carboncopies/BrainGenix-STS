@@ -4,3 +4,5 @@ Bin/
 bin/
 Build/
 build/
+.vscode
+.DS_Store
