@@ -27,6 +27,11 @@ class Stitch:
         # by default DataLocation and OutputDirectory variables point to test data provided with the module.
         self.DataLocation = os.path.join(ROOT_DIR, '50')
         self.OutputDirectory = os.path.join(ROOT_DIR, 'output')
+        self.grid_size_x = "1"
+        self.grid_size_y = "1"
+        self.tile_overlap = "0"
+        self.first_file_index_i = "42"
+        self.file_names = "{ii}.jpg"
 
         ''' 
         Random order profile
@@ -59,12 +64,57 @@ class Stitch:
             shutil.move(os.path.join(ROOT_DIR, self.DataLocation + '/img_t1_z1_c' + str(i)), os.path.join(ROOT_DIR, 'output'))
 
         return
+        """
+        SnakeRowsRightDown
+        
+        This function takes in grid type data with its two dimensions. You have to specify the file start/end index ,
+        The file name format , along with input and output formats. The resulting format is in  tiff. This can be viewed by 
+        imagej tool. In the future capabilities to get data from multiple folders and also need to have the ability to get data from multiple 
+        folders
+        
+        """
+
+
+
+    def SnakeRowsRightDown(self,DataLocation, OutputDirectory,grid_size_x,grid_size_y,tile_overlap,first_file_index_i,file_names):
+        self.DataLocation = DataLocation
+        self.OutputDirectory = OutputDirectory
+        self.grid_size_x = grid_size_x
+        self.grid_size_y = grid_size_y
+        self.tile_overlap = tile_overlap
+        self.first_file_index_i = first_file_index_i
+        self.file_names = file_names
+
+        plugin = 'Grid/Collection stitching'
+        args = {
+
+            'type': '[Grid: snake by rows]',
+            'order': '[Right & Down]',
+            'grid_size_x': str(self.grid_size_x),
+            'grid_size_y': str(self.grid_size_y),
+            'tile_overlap': str(self.tile_overlap),
+            'first_file_index_i': str(self.first_file_index_i),
+            'directory': self.DataLocation,
+            'file_names': str(self.file_names),
+            'confirm_files'
+            'output_textfile_name': 'TileConfiguration.txt',
+            'fusion_method': '[Linear Blending]',
+            'regression_threshold': '0.30',
+            'max/avg_displacement_threshold': '2.50',
+            'absolute_displacement_threshold': '3.50',
+            'computation_parameters': '[Save memory (but be slower)]',
+            'image_output': '[Write to disk]',
+            'output_directory': self.OutputDirectory
+        }
+        ij.py.run_plugin(plugin, args)
+        return
 
         """
-        testing function
-        this function tests all the profiles in the  given class. This removes all the test datafiles . Then it 
-        runs the stitch command and see if  producing proper files.
+            testing function
+            this function tests all the profiles in the  given class. This removes all the test datafiles . Then it 
+            runs the stitch command and see if  producing proper files.
         """
+
 
     def Test(self):
         # here FileNumber variable helps in iterate through file name and remove  files before each test
