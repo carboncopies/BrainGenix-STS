@@ -5,7 +5,9 @@
 
 import imagej
 import scyjava as sj
-import os.path
+import os
+import shutil
+from config.definitions import ROOT_DIR
 
 # initialize ImageJ2
 ij = imagej.init(mode='interactive')
@@ -23,7 +25,7 @@ class SliceMerge:
     def __init__(self):
 
         # by default DataLocation and OutputDirectory variables point to test data provided with the module.
-        self.DataLocation = '/home/jj/PycharmProjects/BrainGenix-STS/Sandbox/Stitch/output'
+        self.DataLocation = os.path.join(ROOT_DIR, 'output')
 
         '''
         stack to rgb function
@@ -43,7 +45,9 @@ class SliceMerge:
         print(macrotest)
         IJ.runMacro(macrotest)
 
+
         print(" rgb image generated")
+
 
         '''
         test function
@@ -52,8 +56,10 @@ class SliceMerge:
         '''
 
     def Test(self):
-        #os.remove("output/result.jpg")
+        print("test started")
+        #os.remove(os.path.join(ROOT_DIR, 'results.jpg'))
         self.StackToRGB(self.DataLocation)
+        print("we moved past the function calling")
         if os.path.exists("output/result.jpg"):
             print("stack to rgb functionality verified")
         else:

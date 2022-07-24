@@ -3,8 +3,9 @@
 ###################################################
 
 import imagej
-import os.path
-
+import os
+from config.definitions import ROOT_DIR
+import shutil
 # initialize ImageJ2 with Fiji plugins
 ''' 
 the fiji version plugins only supports the stitching tool we required from the imagej library.
@@ -24,8 +25,8 @@ profiles in case of specific orderly stitching like left to right , top to botto
 class Stitch:
     def __init__(self):
         # by default DataLocation and OutputDirectory variables point to test data provided with the module.
-        self.DataLocation = '50'
-        self.OutputDirectory = '/home/jj/PycharmProjects/BrainGenix-STS/Sandbox/stitch/output'
+        self.DataLocation = os.path.join(ROOT_DIR, '50')
+        self.OutputDirectory = os.path.join(ROOT_DIR, 'output')
 
         ''' 
         Random order profile
@@ -53,7 +54,10 @@ class Stitch:
             'OutputDirectory': self.OutputDirectory
         }
         ij.py.run_plugin(plugin, args)
-        print("stitching complete in random order the results can be viewed at " + self.OutputDirectory)
+        #print("stitching complete in random order the results can be viewed at " + self.OutputDirectory)
+        for i in range(1, 4):
+            shutil.move(os.path.join(ROOT_DIR, self.DataLocation + '/img_t1_z1_c' + str(i)), os.path.join(ROOT_DIR, 'output'))
+
         return
 
         """
@@ -67,13 +71,13 @@ class Stitch:
         for FileNumber in range(1, 4):
             pass
             #os.remove("output/img_t1_z1_c" + str(FileNumber))
-        self.RandomOrder("50", "/home/jj/PycharmProjects/BrainGenix-STS/Sandbox/stitch/output")
+        self.RandomOrder(self.DataLocation,self.OutputDirectory)
 
         # here we will be using FileNumber variable to go through files
         Counter = 0
         for FileNumber in range(1, 4):
-            print("50/img_t1_z1_c" + str(FileNumber)+".tiff")
-            if os.path.exists("50/img_t1_z1_c" + str(FileNumber)+".tiff"):
+            print("50/img_t1_z1_c" + str(FileNumber)+"")
+            if os.path.exists("50/img_t1_z1_c" + str(FileNumber)+""):
                 Counter += 1
             else:
                 print("  image slice " + str(FileNumber) + " is not formed after stitching.")
