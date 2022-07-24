@@ -6,7 +6,7 @@ BrainGenix Scan Translation System (STS) aims to facilitate the functional trans
 ## Key Features
 
  - Like the other BrainGenix divisions, STS will utilize Apache Zookeeper for coordination and Apache Kafka for navigation of the inter-node aspect of our distributed system.
- - Management of the entire BrainGenix software suite can be acomplished via BrainGenix's unified CLI or GUI.
+ - Management of the entire BrainGenix software suite can be accomplished via BrainGenix's unified CLI or GUI.
  - STS interfaces directly with NES and ERS, the other parts of BrainGenix.
 
 # Documentation
